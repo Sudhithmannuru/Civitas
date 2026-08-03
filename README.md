@@ -2,10 +2,6 @@
 
 **A multilingual web app that tells refugees and immigrants which U.S. federal benefits they likely qualify for — with deadlines, required documents, and concrete next steps — and then helps them actually apply.**
 
-> 🏆 **2nd place out of 321 teams** at the **USAII Global AI Hackathon**.
->
-> **Jotin Samayamantri** was the primary technical contributor on the programming side.
-
 
 ---
 
@@ -156,7 +152,5 @@ proxy.ts        Next.js 16 middleware (auth + route protection)
 ---
 
 ## Credits
-
-Built for the **USAII Global AI Hackathon**, where it placed **2nd out of 321 teams**.
 
 Made by **Jotin Samayamantri, Aarit Choudhary, and Arnav Sahoo**.
