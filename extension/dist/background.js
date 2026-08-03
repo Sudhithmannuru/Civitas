@@ -215,7 +215,7 @@ function fillFields(values) {
       </style>
       <div class="banner">
         <button class="close" onclick="this.closest('#wf-review-banner').remove()">\xD7</button>
-        <div class="title">Wayfinder filled ${filled} field${filled !== 1 ? "s" : ""}</div>
+        <div class="title">Civitas filled ${filled} field${filled !== 1 ? "s" : ""}</div>
         <p>Review every field before submitting. We never fill SSN, A-number, or bank details.</p>
         <div class="warning">\u26A0\uFE0F Do not submit until you have reviewed all fields.</div>
       </div>

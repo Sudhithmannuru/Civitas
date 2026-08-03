@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Ang bagong tahanan ay nagsisimula sa pag-alam ng iyong daan.",
-      "subheadline": "Ang Wayfinder ay nakahanap ng mga benepisyo at papeles na karapat-dapat mo, inaano lahat sa iyong wika, at gabay ka hakbang sa hakbang, bago dumating ang deadline.",
+      "subheadline": "Ang Civitas ay nakahanap ng mga benepisyo at papeles na karapat-dapat mo, inaano lahat sa iyong wika, at gabay ka hakbang sa hakbang, bago dumating ang deadline.",
       "cardLabel": "Magsimula sa iyong wika",
       "searchPlaceholder": "Maghanap ng 100+ wika…",
       "cta": "Magsimula nang libre"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Hanapin namin kung ano ang akma",
-          "body": "Sinisuri ng Wayfinder ang isang nilikha na database ng U.S. benepisyo at ipinapakita kung saan ka karapat-dapat, kasama ang mga pinagkukunan, hindi hula."
+          "body": "Sinisuri ng Civitas ang isang nilikha na database ng U.S. benepisyo at ipinapakita kung saan ka karapat-dapat, kasama ang mga pinagkukunan, hindi hula."
         },
         {
           "title": "Kumilos sa tamang oras",
@@ -50,7 +50,7 @@
         },
         {
           "title": "AI Form Assistant",
-          "body": "Inaano ng Wayfinder bawat larangan at gumagawa ng mga sagot sa iyong wika. Hindi ito humahawak ng sensitibong mga numero, at hindi kailanman nagsusumite ng anuman para sa iyo."
+          "body": "Inaano ng Civitas bawat larangan at gumagawa ng mga sagot sa iyong wika. Hindi ito humahawak ng sensitibong mga numero, at hindi kailanman nagsusumite ng anuman para sa iyo."
         },
         {
           "title": "Document Vault",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Maghanap ng Tulong",
-          "body": "Para sa anumang legal na bagay, ikonekta ka ng Wayfinder sa isang lisensyadong abogado o awtoridad malapit sa iyo. Isang tao, hindi hula."
+          "body": "Para sa anumang legal na bagay, ikonekta ka ng Civitas sa isang lisensyadong abogado o awtoridad malapit sa iyo. Isang tao, hindi hula."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Anumang wika",
       "title": "Sa iyong mga salita, mula sa unang screen pa lamang.",
-      "body": "Piliin ang iyong wika bago ka mag-sign up, at nagsasalita ang Wayfinder nito sa lahat ng lugar, bawat hakbang ng daan."
+      "body": "Piliin ang iyong wika bago ka mag-sign up, at nagsasalita ang Civitas nito sa lahat ng lugar, bawat hakbang ng daan."
     },
     "trust": {
       "badge": "Ang iyong kaligtasan ay una",
       "title": "Hindi kami nagbabahagi ng iyong impormasyon sa immigration enforcement.",
-      "body": "Ang iyong mga dokumento ay encrypted at sa-may-ari lamang. Ang Wayfinder ay hindi kailanman pumuputol ng sensitibong mga pagkakakilanlan, hindi kailanman nagsusumite ng mga form, at bawat legal na desisyon ay ginawa ng isang tunay, lisensyadong tao, hindi ng isang machine.",
+      "body": "Ang iyong mga dokumento ay encrypted at sa-may-ari lamang. Ang Civitas ay hindi kailanman pumuputol ng sensitibong mga pagkakakilanlan, hindi kailanman nagsusumite ng mga form, at bawat legal na desisyon ay ginawa ng isang tunay, lisensyadong tao, hindi ng isang machine.",
       "points": [
         "Encrypted at pribado",
         "Mga pinagkukunan na maaari mong tingnan",
@@ -407,7 +407,7 @@
       "openInFiller": "Buksan sa form filler",
       "secureLine": "Ang iyong mga dokumento ay prosesado nang secure at hindi kailanman ibinabahagi sa immigration enforcement.",
       "send": "Magpadala",
-      "contextNote": "Gumagamit ang Wayfinder ng impormasyon na mayroon ka na upang sagutin para sa iyong sitwasyon.",
+      "contextNote": "Gumagamit ang Civitas ng impormasyon na mayroon ka na upang sagutin para sa iyong sitwasyon.",
       "suggestionsLabel": "Mga karaniwang katanungan"
     },
     "explainer": {
@@ -451,7 +451,7 @@
     "dismiss": "Pasalamatan",
     "footer": {
       "privacy": "Ang iyong impormasyon ay encrypted at pribado. Hindi kami kailanman nagbabahagi nito sa immigration enforcement.",
-      "disclaimer": "Hindi nagbibigay ng legal advice ang Wayfinder."
+      "disclaimer": "Hindi nagbibigay ng legal advice ang Civitas."
     },
     "settings": {
       "title": "Mga Setting",

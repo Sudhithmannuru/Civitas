@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Nyumba mpya huanza kwa kujua njia yako.",
-      "subheadline": "Wayfinder inapata faida na karatasi unazostahili, inaeleza kila kitu katika lugha yako, na inakuongoza hatua kwa hatua, kabla mihaano ipite.",
+      "subheadline": "Civitas inapata faida na karatasi unazostahili, inaeleza kila kitu katika lugha yako, na inakuongoza hatua kwa hatua, kabla mihaano ipite.",
       "cardLabel": "Anza katika lugha yako",
       "searchPlaceholder": "Tafuta lugha 100+…",
       "cta": "Anza bila malipo"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Tunapata kile kinachofaa",
-          "body": "Wayfinder inaangalia hifadhidata iliyohakikishwa ya sheria za faida za Marekani na kuonyesha kwa hasa kile unachostahili, na vyanzo, hakikisha simu."
+          "body": "Civitas inaangalia hifadhidata iliyohakikishwa ya sheria za faida za Marekani na kuonyesha kwa hasa kile unachostahili, na vyanzo, hakikisha simu."
         },
         {
           "title": "Kuwezesha kwa wakati",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Msaidizi wa Fomu ya AI",
-          "body": "Wayfinder inaeleza kila sehemu na kuandika majibu katika lugha yako. Haiguzi namba nyeti, na haiwezi kuwasilisha kile chochote kwa ajili yako."
+          "body": "Civitas inaeleza kila sehemu na kuandika majibu katika lugha yako. Haiguzi namba nyeti, na haiwezi kuwasilisha kile chochote kwa ajili yako."
         },
         {
           "title": "Hazina ya Hati",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Tafuta Msaada",
-          "body": "Kwa kile chochote halali, Wayfinder inakuunganisha na wakili uliyepata leseni au mmwakilishi aliyekubali karibu na wewe. Mtu, si dhani."
+          "body": "Kwa kile chochote halali, Civitas inakuunganisha na wakili uliyepata leseni au mmwakilishi aliyekubali karibu na wewe. Mtu, si dhani."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Lugha yoyote",
       "title": "Katika maneno yako, kutoka skrini ya kwanza.",
-      "body": "Chagua lugha yako kabla kujiandikisha, na Wayfinder inasema katika kila mahali, kila hatua ya njia."
+      "body": "Chagua lugha yako kabla kujiandikisha, na Civitas inasema katika kila mahali, kila hatua ya njia."
     },
     "trust": {
       "badge": "Usalama wako huja kwanza",
       "title": "Hatuwezi kubadilisha taarifa yako na kutekeleza shambulio la wahamiaji.",
-      "body": "Hati zako zimeandaliwa na faragha ya mmiliki tu. Wayfinder haiwezi kuandika viashiria vya nyeti, haiwezi kuwasilisha fomu, na kila uamuzi halali unafanywa na mtu halisi aliyepata leseni, si na mashine.",
+      "body": "Hati zako zimeandaliwa na faragha ya mmiliki tu. Civitas haiwezi kuandika viashiria vya nyeti, haiwezi kuwasilisha fomu, na kila uamuzi halali unafanywa na mtu halisi aliyepata leseni, si na mashine.",
       "points": [
         "Andaliwa na siri",
         "Vyanzo unaweza kuangalia",
@@ -407,7 +407,7 @@
       "openInFiller": "Fungua katika kijaza fomu",
       "secureLine": "Hati zako zinachakatwa kwa usalama na haiwezi kugawanywa na kutekeleza shambulio la wahamiaji.",
       "send": "Tuma",
-      "contextNote": "Wayfinder inatumia maelezo ambayo tayari umesema kujibu kwa ajili ya hali yako.",
+      "contextNote": "Civitas inatumia maelezo ambayo tayari umesema kujibu kwa ajili ya hali yako.",
       "suggestionsLabel": "Maswali ya kawaida"
     },
     "explainer": {
@@ -451,7 +451,7 @@
     "dismiss": "Ondoa",
     "footer": {
       "privacy": "Taarifa yako imeandaliwa na siri. Hatuwezi kugawanya nao na kutekeleza shambulio la wahamiaji.",
-      "disclaimer": "Wayfinder haitoi ushauri wa kisheria."
+      "disclaimer": "Civitas haitoi ushauri wa kisheria."
     },
     "settings": {
       "title": "Mipangilio",

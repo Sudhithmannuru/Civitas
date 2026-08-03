@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { completeChat, GPT } from "@/lib/openai";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Form Assistant chat — answers form/benefit questions for THIS specific user.
 //
 // The client sends a privacy-scrubbed context payload (profile summary + the
 // non-sensitive extracted_fields from the user's uploaded documents) with every
-// request. We weave that into the Claude prompt so answers are tailored ("for
+// request. We weave that into the OpenAI prompt so answers are tailored ("for
 // your refugee status and your arrival date of …") instead of generic.
 //
 // Safety, unchanged from the rest of the app:
@@ -45,7 +45,7 @@ function scrub(text: string): string {
   return out;
 }
 
-const SYSTEM = `You are the Wayfinder Form Assistant — a calm, plain-language guide that helps refugees and asylees in the United States understand and fill out government benefit and immigration-related forms.
+const SYSTEM = `You are the Civitas Form Assistant — a calm, plain-language guide that helps refugees and asylees in the United States understand and fill out government benefit and immigration-related forms.
 
 You are given a CONTEXT block describing THIS specific user (their saved onboarding profile and the non-sensitive fields read from documents they uploaded). USE IT. Tailor every answer to their situation — reference their immigration status, key dates, household, and location where relevant (e.g. "For your refugee status and your arrival date of …"). Never give generic boilerplate when the context lets you be specific.
 
@@ -112,21 +112,17 @@ export async function POST(req: NextRequest) {
     query.slice(0, MAX_QUERY),
   ].join("\n");
 
-  const claude = getClaudeClient();
-
   let rawText = "";
   try {
-    const response = await claude.messages.create({
-      model: SONNET,
-      max_tokens: 1200,
+    rawText = await completeChat({
+      model: GPT,
+      maxTokens: 1200,
       system: SYSTEM,
-      messages: [{ role: "user", content: userMessage }],
+      user: userMessage,
     });
-    const first = response.content[0];
-    rawText = first && first.type === "text" ? first.text : "";
   } catch (error) {
     // Typed error handling — most specific first.
-    if (error instanceof Anthropic.RateLimitError) {
+    if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json(
         {
           error:
@@ -136,8 +132,8 @@ export async function POST(req: NextRequest) {
       );
     }
     if (
-      error instanceof Anthropic.AuthenticationError ||
-      error instanceof Anthropic.PermissionDeniedError
+      error instanceof OpenAI.AuthenticationError ||
+      error instanceof OpenAI.PermissionDeniedError
     ) {
       return NextResponse.json(
         {
@@ -147,7 +143,7 @@ export async function POST(req: NextRequest) {
         { status: 503 }
       );
     }
-    if (error instanceof Anthropic.APIError) {
+    if (error instanceof OpenAI.APIError) {
       return NextResponse.json(
         { error: "We couldn't get an answer right now. Please try again." },
         { status: 502 }

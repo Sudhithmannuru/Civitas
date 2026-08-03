@@ -114,7 +114,7 @@ export function scrubSnapshot(s: PageSnapshot): PageSnapshot {
   };
 }
 
-export const PLANNER_SYSTEM = `You are Wayfinder's portal navigator. You help a refugee/immigrant complete an external U.S. government benefits or immigration application by deciding the next safe actions on the CURRENT page only.
+export const PLANNER_SYSTEM = `You are Civitas's portal navigator. You help a refugee/immigrant complete an external U.S. government benefits or immigration application by deciding the next safe actions on the CURRENT page only.
 
 You are given:
 - A SNAPSHOT of the current page: its headings, form fields (each with a "ref"), buttons, any visible validation errors, and a step indicator.

@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Yeni bir ev, yolunuzu bilmekle başlar.",
-      "subheadline": "Wayfinder, hak ettiğiniz yardımları ve belgeleri bulur, her şeyi dilinde açıklar ve son tarih geçmeden adım adım size rehberlik eder.",
+      "subheadline": "Civitas, hak ettiğiniz yardımları ve belgeleri bulur, her şeyi dilinde açıklar ve son tarih geçmeden adım adım size rehberlik eder.",
       "cardLabel": "Dilinizde başlayın",
       "searchPlaceholder": "100+ dili ara…",
       "cta": "Ücretsiz başla"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Uygun olanı buluruz",
-          "body": "Wayfinder, seçilmiş ABD yardım kurallarını kontrol eder ve tam olarak neye hak kazandığınızı kaynakla gösterir, asla tahminde bulunmaz."
+          "body": "Civitas, seçilmiş ABD yardım kurallarını kontrol eder ve tam olarak neye hak kazandığınızı kaynakla gösterir, asla tahminde bulunmaz."
         },
         {
           "title": "Zamanında hareket edin",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Yapay Zeka Form Yardımcısı",
-          "body": "Wayfinder her alanı açıklar ve dilinde cevapları taslaklandırır. Asla hassas numaralara dokunmaz ve hiçbir şeyi sizin için göndermeye bakmaz."
+          "body": "Civitas her alanı açıklar ve dilinde cevapları taslaklandırır. Asla hassas numaralara dokunmaz ve hiçbir şeyi sizin için göndermeye bakmaz."
         },
         {
           "title": "Belge Kasası",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Yardım Bul",
-          "body": "Herhangi bir yasal konu için Wayfinder sizi yakınında lisanslı bir avukat veya akredite bir temsilciyle bağlantılandırır. Kişi, tahminden başka bir şey değil."
+          "body": "Herhangi bir yasal konu için Civitas sizi yakınında lisanslı bir avukat veya akredite bir temsilciyle bağlantılandırır. Kişi, tahminden başka bir şey değil."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Herhangi bir dil",
       "title": "Kendi kelimelerinizle, çok ilk ekrandan itibaren.",
-      "body": "Kaydolmadan önce dilinizi seçin ve Wayfinder her yerde, her adımda bunu konuşur."
+      "body": "Kaydolmadan önce dilinizi seçin ve Civitas her yerde, her adımda bunu konuşur."
     },
     "trust": {
       "badge": "Güvenliğiniz ilk gelir",
       "title": "Bilgilerinizi hiçbir zaman göçmenlik uygulaması ile paylaşmayız.",
-      "body": "Belgeleriniz şifreli ve yalnız sahibine ait. Wayfinder asla hassas kimlik bilgilerini doldurmaz, hiçbir şekilde form göndermez ve her yasal karar gerçek, lisanslı bir kişi tarafından yapılır, bir makine tarafından değil.",
+      "body": "Belgeleriniz şifreli ve yalnız sahibine ait. Civitas asla hassas kimlik bilgilerini doldurmaz, hiçbir şekilde form göndermez ve her yasal karar gerçek, lisanslı bir kişi tarafından yapılır, bir makine tarafından değil.",
       "points": [
         "Şifreli ve gizli",
         "Kontrol edebileceğiniz kaynaklar",
@@ -407,7 +407,7 @@
       "openInFiller": "Form doldurucu içinde aç",
       "secureLine": "Belgeleriniz güvenli bir şekilde işlenir ve göçmenlik uygulaması ile hiçbir zaman paylaşılmaz.",
       "send": "Gönder",
-      "contextNote": "Wayfinder, sizin durumunuz için cevaplamak için zaten verdiğiniz bilgileri kullanır.",
+      "contextNote": "Civitas, sizin durumunuz için cevaplamak için zaten verdiğiniz bilgileri kullanır.",
       "suggestionsLabel": "Sık sorulan sorular"
     },
     "explainer": {
@@ -451,7 +451,7 @@
     "dismiss": "Kapat",
     "footer": {
       "privacy": "Bilgileriniz şifreli ve özeldir. Asla göçmenlik uygulaması ile paylaşmayız.",
-      "disclaimer": "Wayfinder yasal tavsiye sağlamaz."
+      "disclaimer": "Civitas yasal tavsiye sağlamaz."
     },
     "settings": {
       "title": "Ayarlar",

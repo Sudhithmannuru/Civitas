@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Một ngôi nhà mới bắt đầu bằng cách biết con đường của bạn.",
-      "subheadline": "Wayfinder tìm những lợi ích và giấy tờ bạn đủ điều kiện, giải thích mọi thứ bằng ngôn ngữ của bạn, và hướng dẫn bạn từng bước, trước khi hạn chót đó.",
+      "subheadline": "Civitas tìm những lợi ích và giấy tờ bạn đủ điều kiện, giải thích mọi thứ bằng ngôn ngữ của bạn, và hướng dẫn bạn từng bước, trước khi hạn chót đó.",
       "cardLabel": "Bắt đầu bằng ngôn ngữ của bạn",
       "searchPlaceholder": "Tìm kiếm 100+ ngôn ngữ…",
       "cta": "Bắt đầu miễn phí"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Chúng tôi tìm thứ phù hợp",
-          "body": "Wayfinder kiểm tra một cơ sở dữ liệu các quy tắc lợi ích của Mỹ và chỉ cho bạn chính xác những gì bạn đủ điều kiện, với các nguồn, không bao giờ đoán."
+          "body": "Civitas kiểm tra một cơ sở dữ liệu các quy tắc lợi ích của Mỹ và chỉ cho bạn chính xác những gì bạn đủ điều kiện, với các nguồn, không bao giờ đoán."
         },
         {
           "title": "Hành động kịp thời",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Trợ lý mẫu AI",
-          "body": "Wayfinder giải thích từng trường và soạn thảo câu trả lời bằng ngôn ngữ của bạn. Nó không bao giờ chạm vào các con số nhạy cảm, và không bao giờ gửi bất cứ thứ gì cho bạn."
+          "body": "Civitas giải thích từng trường và soạn thảo câu trả lời bằng ngôn ngữ của bạn. Nó không bao giờ chạm vào các con số nhạy cảm, và không bao giờ gửi bất cứ thứ gì cho bạn."
         },
         {
           "title": "Kho tài liệu",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Tìm trợ giúp",
-          "body": "Đối với bất kỳ vấn đề pháp lý nào, Wayfinder kết nối bạn với một luật sư có giấy phép hoặc đại diện được công nhận gần bạn. Một người, không phải một đoán."
+          "body": "Đối với bất kỳ vấn đề pháp lý nào, Civitas kết nối bạn với một luật sư có giấy phép hoặc đại diện được công nhận gần bạn. Một người, không phải một đoán."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Bất kỳ ngôn ngữ nào",
       "title": "Bằng các từ của bạn, từ màn hình đầu tiên.",
-      "body": "Chọn ngôn ngữ của bạn trước khi bạn đăng ký, và Wayfinder sẽ nói nó ở khắp nơi, mỗi bước của con đường."
+      "body": "Chọn ngôn ngữ của bạn trước khi bạn đăng ký, và Civitas sẽ nói nó ở khắp nơi, mỗi bước của con đường."
     },
     "trust": {
       "badge": "An toàn của bạn là ưu tiên hàng đầu",
       "title": "Chúng tôi không bao giờ chia sẻ thông tin của bạn với cơ quan thực thi nhập cư.",
-      "body": "Tài liệu của bạn được mã hóa và chỉ dành cho chủ sở hữu. Wayfinder không bao giờ điền các mã nhận dạng nhạy cảm, không bao giờ gửi mẫu, và mọi quyết định pháp lý được đưa ra bởi một người thực tế, có giấy phép, không phải bởi một máy.",
+      "body": "Tài liệu của bạn được mã hóa và chỉ dành cho chủ sở hữu. Civitas không bao giờ điền các mã nhận dạng nhạy cảm, không bao giờ gửi mẫu, và mọi quyết định pháp lý được đưa ra bởi một người thực tế, có giấy phép, không phải bởi một máy.",
       "points": [
         "Được mã hóa & riêng tư",
         "Nguồn bạn có thể kiểm tra",
@@ -407,7 +407,7 @@
       "openInFiller": "Mở trong trình điền mẫu",
       "secureLine": "Tài liệu của bạn được xử lý an toàn và không bao giờ chia sẻ với cơ quan thực thi nhập cư.",
       "send": "Gửi",
-      "contextNote": "Wayfinder sử dụng thông tin bạn đã cung cấp để trả lời cho tình huống của bạn.",
+      "contextNote": "Civitas sử dụng thông tin bạn đã cung cấp để trả lời cho tình huống của bạn.",
       "suggestionsLabel": "Câu hỏi phổ biến"
     },
     "explainer": {
@@ -451,7 +451,7 @@
     "dismiss": "Loại bỏ",
     "footer": {
       "privacy": "Thông tin của bạn được mã hóa và riêng tư. Chúng tôi không bao giờ chia sẻ nó với cơ quan thực thi nhập cư.",
-      "disclaimer": "Wayfinder không cung cấp lời khuyên pháp lý."
+      "disclaimer": "Civitas không cung cấp lời khuyên pháp lý."
     },
     "settings": {
       "title": "Cài đặt",

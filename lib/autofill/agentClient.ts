@@ -1,4 +1,4 @@
-// Browser-only client for talking to the Wayfinder extension from the app's
+// Browser-only client for talking to the Civitas extension from the app's
 // React side panel. It speaks the window.postMessage protocol that the
 // extension's appBridge content script relays to the background worker and on to
 // the portal tab. No direct DOM access to the portal — the extension bridges it.
@@ -13,13 +13,13 @@ export type ExecAction =
 
 export interface ExecResult { ref: string; ok: boolean; note?: string }
 
-interface ExtReply { source: "wayfinder-ext"; id?: string; type?: string; ok?: boolean; result?: unknown; error?: string }
+interface ExtReply { source: "civitas-ext"; id?: string; type?: string; ok?: boolean; result?: unknown; error?: string }
 
 let counter = 0;
 
 function request<T>(type: string, payload?: unknown, timeoutMs = 20000): Promise<T> {
   if (typeof window === "undefined") return Promise.reject(new Error("no window"));
-  const id = `wf-${Date.now()}-${++counter}`;
+  const id = `cv-${Date.now()}-${++counter}`;
   return new Promise<T>((resolve, reject) => {
     const timer = setTimeout(() => {
       window.removeEventListener("message", onMsg);
@@ -27,14 +27,14 @@ function request<T>(type: string, payload?: unknown, timeoutMs = 20000): Promise
     }, timeoutMs);
     function onMsg(e: MessageEvent) {
       const d = e.data as ExtReply;
-      if (!d || d.source !== "wayfinder-ext" || d.id !== id) return;
+      if (!d || d.source !== "civitas-ext" || d.id !== id) return;
       clearTimeout(timer);
       window.removeEventListener("message", onMsg);
       if (d.ok) resolve(d.result as T);
       else reject(new Error(d.error || "Extension error"));
     }
     window.addEventListener("message", onMsg);
-    window.postMessage({ source: "wayfinder-app", id, type, payload }, window.location.origin);
+    window.postMessage({ source: "civitas-app", id, type, payload }, window.location.origin);
   });
 }
 

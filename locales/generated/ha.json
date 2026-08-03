@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Sabon gida yana farawa da sanin tuni.",
-      "subheadline": "Wayfinder yana neman abubuwan taimakon da kuka cancanta, yayi ma'ana a harshensa, kuma yana gabatarwa mataki-mataki, kafin lokaci ya wuce.",
+      "subheadline": "Civitas yana neman abubuwan taimakon da kuka cancanta, yayi ma'ana a harshensa, kuma yana gabatarwa mataki-mataki, kafin lokaci ya wuce.",
       "cardLabel": "Fara a harshinka",
       "searchPlaceholder": "Nema harsuna 100+…",
       "cta": "Fara bure"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Mu nemo abin da ya dace",
-          "body": "Wayfinder yana bincika maye-maye abubuwan taimakon Amurka da yana nuna abin da ka cancanta jiya, tare da tushen, ba tsikici ba."
+          "body": "Civitas yana bincika maye-maye abubuwan taimakon Amurka da yana nuna abin da ka cancanta jiya, tare da tushen, ba tsikici ba."
         },
         {
           "title": "Aiki a lokaci",
@@ -50,7 +50,7 @@
         },
         {
           "title": "AI Gida Taimakon Takarda",
-          "body": "Wayfinder yana bayani kowane fili kuma yana tsara amsa a harshinka. Kai ba ya taɓa hannu lamarin sirri ba, kuma kai ba ya taɓa ikirau komai ba."
+          "body": "Civitas yana bayani kowane fili kuma yana tsara amsa a harshinka. Kai ba ya taɓa hannu lamarin sirri ba, kuma kai ba ya taɓa ikirau komai ba."
         },
         {
           "title": "Akwatin Takarada",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Nemo Taimakon",
-          "body": "Don abin kariya, Wayfinder yana tabbatar ka zuwa kariya mai-laisini ko kuma mai-izini kusa. Mutum, ba tsikici ba."
+          "body": "Don abin kariya, Civitas yana tabbatar ka zuwa kariya mai-laisini ko kuma mai-izini kusa. Mutum, ba tsikici ba."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Kowane harshi",
       "title": "A kalaman ka, daga nuni na farko.",
-      "body": "Zaɓi harshinka kafin ka bugi, kuma Wayfinder yana magana a harshinti ko'ina, mataki-mataki."
+      "body": "Zaɓi harshinka kafin ka bugi, kuma Civitas yana magana a harshinti ko'ina, mataki-mataki."
     },
     "trust": {
       "badge": "Kariyarka yana gida da farko",
       "title": "Mu kai ba sa taɓa karata ba tare da jiya kariya ba.",
-      "body": "Takarada naka yana kulle kuma kai gida kawai. Wayfinder kai ba ya taɓa tunani lamarin sirli ba, kai ba ya taɓa ikirau takardun ba, kuma komai kariya yana yanke da gaida, ba na jiya ba.",
+      "body": "Takarada naka yana kulle kuma kai gida kawai. Civitas kai ba ya taɓa tunani lamarin sirli ba, kai ba ya taɓa ikirau takardun ba, kuma komai kariya yana yanke da gaida, ba na jiya ba.",
       "points": [
         "Kulle & sirli",
         "Tushen da ka iya dube",
@@ -405,7 +405,7 @@
       "openInFiller": "Bufi a cikakken takarda",
       "secureLine": "Fili naka ana aiki tare da kulle kuma kai ba a taɓa karata tare da jiya kariya ba.",
       "send": "Aika",
-      "contextNote": "Wayfinder yana amfani da bayani da ka yisan ta hadaddiya domin amsa domin yanayin naka.",
+      "contextNote": "Civitas yana amfani da bayani da ka yisan ta hadaddiya domin amsa domin yanayin naka.",
       "suggestionsLabel": "Tambaye da akai"
     },
     "explainer": {
@@ -449,7 +449,7 @@
     "dismiss": "Kawar",
     "footer": {
       "privacy": "Bayani naka yana kulle kuma sirli. Mu kai ba sa taɓa karata tare da jiya kariya ba.",
-      "disclaimer": "Wayfinder ba ta ba shawara kariya ba."
+      "disclaimer": "Civitas ba ta ba shawara kariya ba."
     },
     "settings": {
       "title": "Saitunan",

@@ -55,7 +55,7 @@ function LoginForm() {
       <div className="mx-auto w-full max-w-md">
         <Link href="/" className="mb-8 flex items-center justify-center gap-2.5">
           <Logo size={30} />
-          <span className="text-xl font-extrabold tracking-[-0.02em] text-ink">Wayfinder</span>
+          <span className="text-xl font-extrabold tracking-[-0.02em] text-ink">Civitas</span>
         </Link>
 
         <div className="rounded-[22px] border border-border bg-surface p-8 shadow-md">

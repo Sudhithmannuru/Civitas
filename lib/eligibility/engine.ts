@@ -1,8 +1,8 @@
 // Deterministic eligibility rule engine.
-// PURE: no React, no DB, no Claude, no fs. Given a profile, derived fields, the
+// PURE: no React, no DB, no LLM, no fs. Given a profile, derived fields, the
 // benefits database and the FPL table, it evaluates each benefit's machine-
 // evaluable `rule` tree and produces EligibilityBenefit records with template
-// (English) narrative text — to be optionally overwritten by Claude later.
+// (English) narrative text — to be optionally overwritten by OpenAI later.
 //
 // Core safety property: MISSING input never produces "not_eligible". Unknown
 // answers resolve to "review" (-> needs_human_review), so incomplete data can
@@ -362,7 +362,7 @@ function requiredDocumentsFor(benefit: BenefitRecord, ctx: EvalContext): string[
   return docs;
 }
 
-// ── Narrative templates (English; overwritten by Claude when available) ──────
+// ── Narrative templates (English; overwritten by OpenAI when available) ──────
 
 function splitSteps(howToApply: string): string[] {
   if (!howToApply) return [];

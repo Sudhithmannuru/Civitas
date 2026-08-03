@@ -1155,7 +1155,7 @@ export default function FormFillClient({
             <p className="mx-auto mt-1.5 max-w-sm text-sm text-text-muted">
               {tt(
                 "demoDescription",
-                "No upload needed — this is a real IRS Form W-9 you can try right now to watch Wayfinder fill out a real government form.",
+                "No upload needed — this is a real IRS Form W-9 you can try right now to watch Civitas fill out a real government form.",
               )}
             </p>
             <button

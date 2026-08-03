@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Malhek nû bi zanina rêya xwe dest pê dike.",
-      "subheadline": "Wayfinder fêrî we dide karike û kaxezên ku hûn derbasdar in, hemû tişt bi zimanê xwe şirove dike, û hûn gav bi gav fûmandin, berî ku demdemê biqede.",
+      "subheadline": "Civitas fêrî we dide karike û kaxezên ku hûn derbasdar in, hemû tişt bi zimanê xwe şirove dike, û hûn gav bi gav fûmandin, berî ku demdemê biqede.",
       "cardLabel": "Di zimanê xwe de dest pê bike",
       "searchPlaceholder": "100+ ziman lê bigerin…",
       "cta": "Bê çente dest pê bike"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Em çi li we dégel dike bibînin",
-          "body": "Wayfinder bankayek maqûl a rêzên karîkên A.B.D. kontrol dike û tam xwedîtiyên we nîşan dide, bi çavkaniyan, ne tahmînî."
+          "body": "Civitas bankayek maqûl a rêzên karîkên A.B.D. kontrol dike û tam xwedîtiyên we nîşan dide, bi çavkaniyan, ne tahmînî."
         },
         {
           "title": "Di serbilindî de tevbigerin",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Alîkarê Forma AI",
-          "body": "Wayfinder her qade şirove dike û bersivên di zimanê xwe de teklif dike. Ew yana hejmarên hestiyar nedigire, û yana tiştekî ji bo we şûnde nabe."
+          "body": "Civitas her qade şirove dike û bersivên di zimanê xwe de teklif dike. Ew yana hejmarên hestiyar nedigire, û yana tiştekî ji bo we şûnde nabe."
         },
         {
           "title": "Çolika Belgeyê",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Alîkariyê Bibîne",
-          "body": "Ji bo her tişta qanûnî, Wayfinder we ji avuhêlera mafê ya sertîfî an nûnerê maqûl li nêzîkê xwe re girê dide. Kesek, ne tahmînî."
+          "body": "Ji bo her tişta qanûnî, Civitas we ji avuhêlera mafê ya sertîfî an nûnerê maqûl li nêzîkê xwe re girê dide. Kesek, ne tahmînî."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Her ziman",
       "title": "Bi peyvên xwe, ji ekrana yekem de.",
-      "body": "Zimanê xwe hilbijêrin berî ku hûn tomarkî bikin, û Wayfinder li her derve, di her gava de jê re bibêje."
+      "body": "Zimanê xwe hilbijêrin berî ku hûn tomarkî bikin, û Civitas li her derve, di her gava de jê re bibêje."
     },
     "trust": {
       "badge": "Ewlehiya xwe li pêşeng",
       "title": "Em yana agahiyên xwe ji fêhmeya şûnde re ne parve dikine.",
-      "body": "Belgeya xwe şîfrekirî û yê xwe tenê ne. Wayfinder yana nasnameya hestiyar napû, yana form ne şûnde dike, û her biryara qanûnî ji ber kesek ya sertîfî ne, ne ji ber makîne.",
+      "body": "Belgeya xwe şîfrekirî û yê xwe tenê ne. Civitas yana nasnameya hestiyar napû, yana form ne şûnde dike, û her biryara qanûnî ji ber kesek ya sertîfî ne, ne ji ber makîne.",
       "points": [
         "Şîfrekî û taye",
         "Çavkanî hûn kontrolî dikarin",
@@ -405,7 +405,7 @@
       "openInFiller": "Di dagirtina forma de vekirin",
       "secureLine": "Belgeya xwe bi aram tê pêkî kirin û yana bi fêhmeya şûndera re ne parve bibe.",
       "send": "Birin",
-      "contextNote": "Wayfinder agahiyên ku hûn jixwe dayî bêrî vê bikaranî bikin ku ji bo rewşa xwe bersiv bidin.",
+      "contextNote": "Civitas agahiyên ku hûn jixwe dayî bêrî vê bikaranî bikin ku ji bo rewşa xwe bersiv bidin.",
       "suggestionsLabel": "Pirsên gelemperî"
     },
     "explainer": {
@@ -449,7 +449,7 @@
     "dismiss": "Vekinin",
     "footer": {
       "privacy": "Agahiyên xwe şîfrekirî û taye ne. Em yana bi fêhmeya şûndera re ne parve dikine.",
-      "disclaimer": "Wayfinder ne şêwaza qanûnî pêşkêş dike."
+      "disclaimer": "Civitas ne şêwaza qanûnî pêşkêş dike."
     },
     "settings": {
       "title": "Sazkarî",

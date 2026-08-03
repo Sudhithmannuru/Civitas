@@ -5,7 +5,7 @@
 // We keep a LIST of in-progress forms (most-recent first), each holding the PDF
 // itself (base64, so the page fully restores) plus the values entered so far.
 
-const KEY = "wayfinder:form-progress";
+const KEY = "civitas:form-progress";
 const MAX_BYTES = 3 * 1024 * 1024; // don't persist PDFs larger than ~3MB
 const MAX_FORMS = 8; // keep the 8 most recent in-progress forms
 

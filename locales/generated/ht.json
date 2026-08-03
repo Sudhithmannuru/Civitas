@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Yon kay nouvo kòmanse lè ou konnen chemen ou.",
-      "subheadline": "Wayfinder jwenn avantaj ak dokiman ou ka jwenn, eksplike tou sa nan lang ou, epi gide ou etap pa etap, anvan delè yo pase.",
+      "subheadline": "Civitas jwenn avantaj ak dokiman ou ka jwenn, eksplike tou sa nan lang ou, epi gide ou etap pa etap, anvan delè yo pase.",
       "cardLabel": "Kòmanse nan lang ou",
       "searchPlaceholder": "Chèche 100+ lang…",
       "cta": "Kòmanse gratis"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Nou jwenn ki sa ki bon pou ou",
-          "body": "Wayfinder verifye yon baz done règ avantaj Ameriken epi montre egzakteman sa ou ka jwenn, avèk sous, pa gen devinèt."
+          "body": "Civitas verifye yon baz done règ avantaj Ameriken epi montre egzakteman sa ou ka jwenn, avèk sous, pa gen devinèt."
         },
         {
           "title": "Aji a tan",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Asistan Fòm AI",
-          "body": "Wayfinder eksplike chak kaz epi desen reponn nan lang ou. Li pa janm tache nimewo sansib, epi li pa janm voye anyen pou ou."
+          "body": "Civitas eksplike chak kaz epi desen reponn nan lang ou. Li pa janm tache nimewo sansib, epi li pa janm voye anyen pou ou."
         },
         {
           "title": "Depo Dokiman",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Jwenn Èd",
-          "body": "Pou nenpòt sa legal, Wayfinder konekte ou avèk yon avoka ki pèmèt oswa yon reprezantan akredite tou pre ou. Yon moun, pa yon devinèt."
+          "body": "Pou nenpòt sa legal, Civitas konekte ou avèk yon avoka ki pèmèt oswa yon reprezantan akredite tou pre ou. Yon moun, pa yon devinèt."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Nenpòt lang",
       "title": "Nan mo ou yo, depi premye ekran.",
-      "body": "Chwazi lang ou anvan ou siyen, epi Wayfinder pale li patou, chak etap sou chak etap."
+      "body": "Chwazi lang ou anvan ou siyen, epi Civitas pale li patou, chak etap sou chak etap."
     },
     "trust": {
       "badge": "Sekirite ou vini an premye",
       "title": "Nou pa janm pataje enfòmasyon ou avèk fòs imigrasyon.",
-      "body": "Dokiman ou yo chifre epi jis pou pwòpriyetè a. Wayfinder pa janm ranpli idantifyan sansib, pa janm voye fòm, epi chak desizyon legal se yon moun reyèl, ki pèmèt, ki fè li, pa yon machin.",
+      "body": "Dokiman ou yo chifre epi jis pou pwòpriyetè a. Civitas pa janm ranpli idantifyan sansib, pa janm voye fòm, epi chak desizyon legal se yon moun reyèl, ki pèmèt, ki fè li, pa yon machin.",
       "points": [
         "Chifre & prive",
         "Sous ou ka verifye",
@@ -405,7 +405,7 @@
       "openInFiller": "Louvri nan ranplisè fòm",
       "secureLine": "Dokiman ou yo trete sekireman epi pa janm pataje avèk fòs imigrasyon.",
       "send": "Voye",
-      "contextNote": "Wayfinder itilize enfòmasyon ou te deja bay pou reponn pou sitiyasyon ou.",
+      "contextNote": "Civitas itilize enfòmasyon ou te deja bay pou reponn pou sitiyasyon ou.",
       "suggestionsLabel": "Kesyon kòman yo"
     },
     "explainer": {
@@ -449,7 +449,7 @@
     "dismiss": "Refe",
     "footer": {
       "privacy": "Enfòmasyon ou yo chifre epi prive. Nou pa janm pataje avèk fòs imigrasyon.",
-      "disclaimer": "Wayfinder pa bay konsey legal."
+      "disclaimer": "Civitas pa bay konsey legal."
     },
     "settings": {
       "title": "Paramèt",

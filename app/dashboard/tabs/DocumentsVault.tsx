@@ -167,7 +167,7 @@ export default function DocumentsVault({ documents: initial, userId }: Props) {
     setDocs((d) => [doc as Document, ...d]);
     setUploading(false);
 
-    // Trigger Claude vision extraction
+    // Trigger OpenAI vision extraction
     setExtracting(doc.id);
     try {
       await fetch("/api/documents/extract", {

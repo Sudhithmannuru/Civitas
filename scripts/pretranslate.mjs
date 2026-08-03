@@ -6,18 +6,18 @@
 //   node scripts/pretranslate.mjs es ar fa   # only these codes
 //   node scripts/pretranslate.mjs --force    # regenerate everything (after en.json changes)
 //
-// Reads ANTHROPIC_API_KEY from .env.local. Writes each file as it completes,
+// Reads OPENAI_API_KEY from .env.local. Writes each file as it completes,
 // so partial runs still help and re-runs only fill what's missing.
 
 import { readFile, writeFile, mkdir, readdir } from "fs/promises";
 import { existsSync, readFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = join(ROOT, "locales", "generated");
-const MODEL = "claude-haiku-4-5";
+const MODEL = "gpt-4o-mini";
 const CONCURRENCY = 5;
 
 function loadEnv() {
@@ -62,9 +62,10 @@ function deepMergeOverEnglish(base, override) {
 }
 
 async function translate(client, enJson, lang) {
-  const stream = client.messages.stream({
+  const stream = await client.chat.completions.create({
     model: MODEL,
-    max_tokens: 32000,
+    max_tokens: 16000,
+    stream: true,
     messages: [{
       role: "user",
       content: `Translate the following JSON UI strings into ${lang.name} (language code: ${lang.code}).
@@ -80,8 +81,10 @@ JSON to translate:
 ${enJson}`,
     }],
   });
-  const msg = await stream.finalMessage();
-  let text = msg.content[0]?.type === "text" ? msg.content[0].text : "";
+  let text = "";
+  for await (const chunk of stream) {
+    text += chunk.choices[0]?.delta?.content ?? "";
+  }
   text = text.trim();
   const fence = text.match(/```(?:json)?\s*([\s\S]*?)```/i);
   if (fence) text = fence[1].trim();
@@ -98,8 +101,8 @@ ${enJson}`,
 
 async function main() {
   loadEnv();
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error("ANTHROPIC_API_KEY not found (checked process.env and .env.local).");
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("OPENAI_API_KEY not found (checked process.env and .env.local).");
     process.exit(1);
   }
 
@@ -120,7 +123,7 @@ async function main() {
   console.log(`Languages: ${langs.length} total, ${todo.length} to generate${force ? " (force)" : ""}.`);
   if (!todo.length) { console.log("Nothing to do."); return; }
 
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   let done = 0, failed = 0;
   const queue = [...todo];
 

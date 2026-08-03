@@ -60,7 +60,7 @@ export default function AutofillSetup() {
       </div>
 
       <a
-        href="/wayfinder-extension.zip"
+        href="/civitas-extension.zip"
         download
         className="mt-4 inline-flex items-center gap-2 rounded-[--radius-md] bg-harbor-600 px-5 py-3 text-base font-semibold text-white transition active:scale-[0.98] hover:bg-harbor-700 focus-visible:outline-none focus-visible:shadow-focus"
       >

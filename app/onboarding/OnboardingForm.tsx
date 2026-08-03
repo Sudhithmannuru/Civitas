@@ -587,7 +587,7 @@ export default function OnboardingForm() {
           <div className="mb-2 flex items-center justify-between text-sm text-text-muted">
             <Link href="/" className="flex items-center gap-2 font-display font-semibold text-text">
               <Logo size={26} />
-              Wayfinder
+              Civitas
             </Link>
             <span aria-live="polite">
               {ob.progressLabel.replace("{current}", String(stepIndex + 1)).replace("{total}", String(total))}

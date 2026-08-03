@@ -77,7 +77,7 @@ export default function MockPortal() {
               >
                 Sign in
               </button>
-              <p className="mt-3 text-xs text-gray-400">Demo only: any username &amp; password works. Wayfinder never sees what you type here.</p>
+              <p className="mt-3 text-xs text-gray-400">Demo only: any username &amp; password works. Civitas never sees what you type here.</p>
             </section>
           ) : (
             <>

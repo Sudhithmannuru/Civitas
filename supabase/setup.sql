@@ -1,6 +1,3 @@
--- Prefer supabase/setup.sql (complete current schema).
--- Kept for compatibility: re-export of setup.sql.
-
 -- ============================================================
 -- Civitas — Complete database setup (idempotent)
 -- Creates the current schema matching lib/types.ts Profile +

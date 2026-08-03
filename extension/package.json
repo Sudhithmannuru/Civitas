@@ -1,8 +1,8 @@
 {
-  "name": "wayfinder-extension",
+  "name": "civitas-extension",
   "version": "0.2.0",
   "private": true,
-  "description": "Wayfinder Chrome Extension — pre-fills government benefit forms from your profile",
+  "description": "Civitas Chrome Extension — pre-fills government benefit forms from your profile",
   "scripts": {
     "build": "npm run build:module && npm run build:content",
     "build:module": "esbuild src/background.ts src/popup.ts --bundle --outdir=dist --format=esm --platform=browser --target=chrome120",

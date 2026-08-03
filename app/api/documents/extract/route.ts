@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import type OpenAI from "openai";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { completeChat, imagePart, pdfPart, GPT } from "@/lib/openai";
 import { normalizeImageForOcr } from "@/lib/onboarding/ocrImage";
 
 // Reads a document the user added in "My Documents" and stores the NON-sensitive
@@ -68,13 +68,11 @@ export async function POST(req: NextRequest) {
   }
   const buffer = Buffer.from(await fileData.arrayBuffer());
 
-  // Build the content block: PDFs go as-is; images are normalized first.
-  const content: Anthropic.ContentBlockParam[] = [];
+  // Build the content parts: PDFs go as-is; images are normalized first.
+  const parts: OpenAI.Chat.ChatCompletionContentPart[] = [];
   if (isPdf) {
-    content.push({
-      type: "document",
-      source: { type: "base64", media_type: "application/pdf", data: buffer.toString("base64") },
-    });
+    const name = String(filePath).split("/").pop() || "document.pdf";
+    parts.push(pdfPart(name.endsWith(".pdf") ? name : `${name}.pdf`, buffer.toString("base64")));
   } else {
     let data: Buffer = buffer;
     let media: "image/jpeg" | "image/png" | "image/gif" | "image/webp" =
@@ -84,15 +82,13 @@ export async function POST(req: NextRequest) {
       data = norm.data;
       media = norm.mediaType;
     } catch { /* fall back to original bytes */ }
-    content.push({ type: "image", source: { type: "base64", media_type: media, data: data.toString("base64") } });
+    parts.push(imagePart(media, data.toString("base64")));
   }
-  content.push({ type: "text", text: PROMPT });
+  parts.push({ type: "text", text: PROMPT });
 
-  const claude = getClaudeClient();
   let text = "{}";
   try {
-    const response = await claude.messages.create({ model: SONNET, max_tokens: 600, messages: [{ role: "user", content }] });
-    text = response.content[0]?.type === "text" ? response.content[0].text : "{}";
+    text = (await completeChat({ model: GPT, maxTokens: 600, user: parts })) || "{}";
   } catch {
     return NextResponse.json({ error: "Extraction failed" }, { status: 502 });
   }

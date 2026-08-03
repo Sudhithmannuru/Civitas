@@ -1,5 +1,5 @@
 import enStrings from "@/locales/en.json";
-import { getClaudeClient, SONNET } from "./claude";
+import { getOpenAIClient, GPT } from "./openai";
 import { SUPPORTED_LANGUAGES } from "./languages";
 
 export type UIStrings = typeof enStrings;
@@ -79,7 +79,7 @@ function hasAllKeys(base: unknown, obj: unknown): boolean {
   return true;
 }
 
-// Fetch translations from Supabase cache or generate via Claude
+// Fetch translations from Supabase cache or generate via OpenAI
 export async function getTranslations(languageCode: string): Promise<UIStrings> {
   if (languageCode === "en") return enStrings;
 
@@ -130,10 +130,10 @@ export async function getTranslations(languageCode: string): Promise<UIStrings> 
     return mergeStrings(cached.translations);
   }
 
-  // Generate with Claude. If this throws (truncated / malformed output), let it
+  // Generate with OpenAI. If this throws (truncated / malformed output), let it
   // bubble up — we do NOT cache or persist an English fallback, so a later
   // retry can still succeed.
-  const translated = await translateStringsWithClaude(languageCode);
+  const translated = await translateStringsWithOpenAI(languageCode);
 
   // Cache for future users (only reached on a valid translation). The table's
   // PK is `id`, so upsert must conflict on the unique `language_code` to UPDATE
@@ -167,16 +167,17 @@ function extractJson(text: string): string {
   return raw;
 }
 
-async function translateStringsWithClaude(languageCode: string): Promise<UIStrings> {
-  const client = getClaudeClient();
+async function translateStringsWithOpenAI(languageCode: string): Promise<UIStrings> {
+  const client = getOpenAIClient();
   const langName = SUPPORTED_LANGUAGES.find((l) => l.code === languageCode)?.name ?? languageCode;
 
   // Stream so we can request generous headroom (non-Latin scripts tokenize
   // larger) without risking an SDK HTTP timeout. Truncation at a low
   // max_tokens was the cause of silent English fallbacks.
-  const stream = client.messages.stream({
-    model: SONNET,
-    max_tokens: 32000,
+  const stream = await client.chat.completions.create({
+    model: GPT,
+    max_tokens: 16000,
+    stream: true,
     messages: [
       {
         role: "user",
@@ -195,12 +196,14 @@ ${JSON.stringify(enStrings, null, 2)}`,
     ],
   });
 
-  const message = await stream.finalMessage();
-  const text = message.content[0]?.type === "text" ? message.content[0].text : "";
+  let text = "";
+  for await (const chunk of stream) {
+    text += chunk.choices[0]?.delta?.content ?? "";
+  }
   const parsed = JSON.parse(extractJson(text)) as UIStrings;
 
   if (!isValidStrings(parsed)) {
-    throw new Error(`Claude returned a malformed translation for ${languageCode}`);
+    throw new Error(`OpenAI returned a malformed translation for ${languageCode}`);
   }
   return parsed;
 }

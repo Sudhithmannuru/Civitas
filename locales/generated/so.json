@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Guriga cusub waxa lagu bilaabaa inaad tideesid jidka.",
-      "subheadline": "Wayfinder waxa ay helisa faa'iidooyinka iyo shaqooyinka qaydiga aad qabato, waxay ku sharxi kartaa laanta ku jirta luqaddaada, wayna kaa gargaari kartaa tallaabada tallaabo, ka hor inta deadline ku meeraan.",
+      "subheadline": "Civitas waxa ay helisa faa'iidooyinka iyo shaqooyinka qaydiga aad qabato, waxay ku sharxi kartaa laanta ku jirta luqaddaada, wayna kaa gargaari kartaa tallaabada tallaabo, ka hor inta deadline ku meeraan.",
       "cardLabel": "Bilow luqaddaada",
       "searchPlaceholder": "Raadig 100+ luqado…",
       "cta": "Bilow hadda lacag la'aan"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Waxaan raadinaa waxa ku habeysa",
-          "body": "Wayfinder waxa ay eegaysaa database-ka loo curatay ee sharciga faa'iidooyinka USA-ka, waana muujisaa waxa aad qabato hadda, iyadoo la tusayo isha, mar walba."
+          "body": "Civitas waxa ay eegaysaa database-ka loo curatay ee sharciga faa'iidooyinka USA-ka, waana muujisaa waxa aad qabato hadda, iyadoo la tusayo isha, mar walba."
         },
         {
           "title": "Qaado malaawe",
@@ -50,7 +50,7 @@
         },
         {
           "title": "AI Foomka Saaxiib",
-          "body": "Wayfinder waxay fasiraysaa bedka kasta waxa uu leeyahay, waxay doofsataa jawaabaha luqaddaadaada. Waxay faafin kama gaadaan tirooyinka naga caasimaa, waana waxba cid cid kama diraan."
+          "body": "Civitas waxay fasiraysaa bedka kasta waxa uu leeyahay, waxay doofsataa jawaabaha luqaddaadaada. Waxay faafin kama gaadaan tirooyinka naga caasimaa, waana waxba cid cid kama diraan."
         },
         {
           "title": "Khizaanada Dukumintiyada",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Raadi Caawi",
-          "body": "Waxbarbardhig walaac sharciga lagu xidhiidh, Wayfinder waxa ay kugta xidhaada abogaad lix ah ama wakiil ixtibaari ah ku dhow. Qof, ayaan u mahadsanid."
+          "body": "Waxbarbardhig walaac sharciga lagu xidhiidh, Civitas waxa ay kugta xidhaada abogaad lix ah ama wakiil ixtibaari ah ku dhow. Qof, ayaan u mahadsanid."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Luqad kasta",
       "title": "Ereyaadaada, shaashee koowaad.",
-      "body": "Dooro luqaddaada ka hor iyadoo aad akoonkaaga sameyso, Wayfinder waxa ay hadleysa jidka kasta, tallaabo kasta."
+      "body": "Dooro luqaddaada ka hor iyadoo aad akoonkaaga sameyso, Civitas waxa ay hadleysa jidka kasta, tallaabo kasta."
     },
     "trust": {
       "badge": "Ammakagu waa inuu hore u dhaco",
       "title": "Waxba uma dirna sharciga jidka gaalkacida.",
-      "body": "Dukumintiyaadkaadu waxa ay xidhibaal yihiin iyo midkood kuu leeyahay. Wayfinder waxay faafin kama gaadaan astaan caasimaa, waxba cid cid kama diraan foomidaha, iyo go'aanta sharciga kasta waxa ay yihiin qof dhabaa oo lix ah, ayaan u mahadsanid ay gaarka ah ama makina.",
+      "body": "Dukumintiyaadkaadu waxa ay xidhibaal yihiin iyo midkood kuu leeyahay. Civitas waxay faafin kama gaadaan astaan caasimaa, waxba cid cid kama diraan foomidaha, iyo go'aanta sharciga kasta waxa ay yihiin qof dhabaa oo lix ah, ayaan u mahadsanid ay gaarka ah ama makina.",
       "points": [
         "Xidhibaal iyo socdaal",
         "Isha aad eegaysid",
@@ -407,7 +407,7 @@
       "openInFiller": "Foomka midka dhamaystir fur",
       "secureLine": "Dukumintiyaadkaagu waxa ay lagu heshiiyan hadda oo waxba cid cid kuma kaydsan sharciga jidka gaalkacida.",
       "send": "Dir",
-      "contextNote": "Wayfinder waxa ay isticmaalaa ereyadaada waxa ay sheegeen jawaab halka aad tahay.",
+      "contextNote": "Civitas waxa ay isticmaalaa ereyadaada waxa ay sheegeen jawaab halka aad tahay.",
       "suggestionsLabel": "Su'aalaha caadi"
     },
     "explainer": {
@@ -451,7 +451,7 @@
     "dismiss": "Dibti",
     "footer": {
       "privacy": "Xulka waxa ay xidhibaal yihiin iyo socdaal. Waxba uma dirna sharciga jidka gaalkacida.",
-      "disclaimer": "Wayfinder waxay siineysaa sharciga caawi aysan."
+      "disclaimer": "Civitas waxay siineysaa sharciga caawi aysan."
     },
     "settings": {
       "title": "Xulka",

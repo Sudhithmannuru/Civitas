@@ -1,5 +1,5 @@
 // Deterministic derived-field computation for the eligibility engine.
-// PURE: no React, no DB, no Claude, no fs. Behavior is identical to the
+// PURE: no React, no DB, no LLM, no fs. Behavior is identical to the
 // previous computeDerived in app/api/eligibility/route.ts (no math changes).
 
 import type { DerivedFields, Profile } from "@/lib/types";

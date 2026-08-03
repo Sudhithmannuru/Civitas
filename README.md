@@ -1,4 +1,4 @@
-# Wayfinder
+# Civitas
 
 **A multilingual web app that tells refugees and immigrants which U.S. federal benefits they likely qualify for — with deadlines, required documents, and concrete next steps — and then helps them actually apply.**
 
@@ -12,13 +12,13 @@
 
 Arriving in the U.S. as a refugee or asylee means facing a maze of federal and state benefit programs — each with its own eligibility rules, filing windows, and paperwork, almost all of it in dense English legalese. Missing a deadline (many programs have a hard 4–8 month window from arrival) can mean permanently losing a benefit.
 
-Wayfinder turns that maze into a clear, personalized action plan:
+Civitas turns that maze into a clear, personalized action plan:
 
 - **Onboarding wizard** — a short, plain-language intake (immigration status, arrival dates, household, income, goals) collected across ~30 supported languages. Sensitive identifiers like SSNs and A-Numbers are *never* collected.
 - **Eligibility engine** — determines, per program, whether the person is `likely_eligible`, `maybe_eligible`, `not_eligible`, or `needs_human_review`, across 25 federal programs.
 - **Personalized action plan** — ranked by soonest deadline first, with a plain-language "why you qualify," required documents, days left to apply, and links to the official source.
 - **Fill out with AI** — an in-browser agent (via a companion Chrome extension) that opens the real government application portal, fills in the non-sensitive fields from the user's saved profile, pauses for anything sensitive (SSN, captchas, sign-ins, legal consent), and **always stops before submitting** so the user reviews and submits themselves.
-- **Document assistant** — upload an I-94, work permit, or other document and Wayfinder extracts the fields to pre-fill forms.
+- **Document assistant** — upload an I-94, work permit, or other document and Civitas extracts the fields to pre-fill forms.
 - **Explain-a-letter** — paste or upload a confusing government letter and get a plain-language explanation.
 - **Find Help** — state-keyed directory of resettlement agencies and legal aid.
 
@@ -28,7 +28,7 @@ Everything — UI, summaries, and next steps — is delivered in the user's chos
 
 ## Architecture
 
-Stack: **Next.js 16 (App Router) + React 19**, **Supabase** (auth + Postgres + Storage), **Claude** (`@anthropic-ai/sdk`), **Tailwind CSS 4**, deployed on **Vercel**.
+Stack: **Next.js 16 (App Router) + React 19**, **Supabase** (auth + Postgres + Storage), **OpenAI** (`openai`), **Tailwind CSS 4**, deployed on **Vercel**.
 
 ### User flow
 
@@ -46,9 +46,9 @@ signup/login (app/auth/*)
 The heart of the app, and deliberately layered:
 
 1. **Deterministic derived fields** (`computeDerived`) are computed in TypeScript: ORR-eligible / qualified-alien / LPR status, months and years since key dates, `percent_fpl` from the HHS poverty table, and pre-gated flags (`eligible_for_tanf/ssi/medicaid`) that downstream rules depend on.
-2. **Rule application** is delegated to Claude, which receives the profile + derived fields + the full structured rule database and returns per-benefit statuses.
-3. A **verification pass** re-checks the result; any disagreement on a non-`not_eligible` benefit is downgraded to `needs_human_review`.
-4. A short final call writes a warm summary **in the user's language**. Results are ranked (soonest deadline first) and persisted to `eligibility_results`.
+2. **Rule application** is evaluated in code (`lib/eligibility/engine.ts`) against the structured rule database and returns per-benefit statuses.
+3. OpenAI writes plain-language narratives; a **verification pass** audits them against source records and flags anything unverifiable.
+4. Results are ranked (soonest deadline first) and persisted to `eligibility_results`.
 
 ### Data & rules — `data/` and `database/`
 
@@ -58,11 +58,11 @@ The heart of the app, and deliberately layered:
 
 ### Internationalization — `locales/`, `lib/translations.ts`
 
-`locales/en.json` is the master string set. For any other language, `getTranslations(code)` reads the Supabase `ui_translations` cache, and on a miss asks Claude to translate the whole string set (preserving keys and `{placeholders}`), then caches it globally for every future user. Add UI strings to `en.json`; other languages are generated on demand.
+`locales/en.json` is the master string set. For any other language, `getTranslations(code)` reads the Supabase `ui_translations` cache, and on a miss asks OpenAI to translate the whole string set (preserving keys and `{placeholders}`), then caches it globally for every future user. Add UI strings to `en.json`; other languages are generated on demand.
 
 ### The "Fill out with AI" agent — `extension/` + `app/api/autofill`
 
-A companion Chrome extension bridges Wayfinder's in-page side panel to the government portal tab it can't touch directly:
+A companion Chrome extension bridges Civitas's in-page side panel to the government portal tab it can't touch directly:
 
 - The app snapshots each portal page, asks the planner (`/api/autofill/plan`) for the next safe actions, executes the safe fills, and narrates progress live.
 - It **pauses for the user** on anything only a human should do: missing info, sensitive fields (SSN, A-Number, bank/card numbers), captchas, sign-in walls, and legal-consent checkboxes (which route to a "talk to your attorney first" hand-off).
@@ -70,7 +70,7 @@ A companion Chrome extension bridges Wayfinder's in-page side panel to the gover
 
 ### Server / client boundaries
 
-- `lib/claude.ts` and the service-role Supabase client are **server-only** — never imported from client components, and the API/service keys are never exposed to the browser.
+- `lib/openai.ts` and the service-role Supabase client are **server-only** — never imported from client components, and the API/service keys are never exposed to the browser.
 - Supabase: `lib/supabase/server.ts` (`createClient()` respects user cookies; `createServiceClient()` for privileged writes) and `lib/supabase/client.ts` (browser).
 - Middleware lives in `proxy.ts` at the repo root (Next.js 16 convention) — it runs `supabase.auth.getUser()` on every request and protects the authenticated routes.
 
@@ -87,14 +87,14 @@ A companion Chrome extension bridges Wayfinder's in-page side panel to the gover
 
 - Node.js 20+
 - A Supabase project (run `supabase/schema.sql` and `supabase/migration_v2.sql`)
-- An Anthropic API key
+- An OpenAI API key
 
 ### Environment
 
 Create `.env.local`:
 
 ```bash
-ANTHROPIC_API_KEY=...                  # Claude API
+OPENAI_API_KEY=...                     # OpenAI API
 NEXT_PUBLIC_SUPABASE_URL=...           # Supabase client / auth
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...          # server-only privileged writes
@@ -117,9 +117,9 @@ npm run lint       # ESLint (flat config, eslint-config-next)
 
 The companion extension is in `extension/`. It is **not** yet published to the Chrome Web Store, so it is loaded unpacked:
 
-1. Download `public/wayfinder-extension.zip` (also offered as a download inside the app during onboarding and in **Settings → Auto-fill**) and unzip it.
-2. Go to `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the unzipped `wayfinder-extension` folder.
-3. In Wayfinder, open **Settings → Auto-fill → Set up auto-fill** to get a pairing code, then enter it in the extension popup.
+1. Download `public/civitas-extension.zip` (also offered as a download inside the app during onboarding and in **Settings → Auto-fill**) and unzip it.
+2. Go to `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select the unzipped `civitas-extension` folder.
+3. In Civitas, open **Settings → Auto-fill → Set up auto-fill** to get a pairing code, then enter it in the extension popup.
 4. Open your Action Plan and click **Fill out with AI** on any program.
 
 To rebuild the extension after editing `extension/src/*`:
@@ -143,7 +143,7 @@ app/            Next.js App Router — pages + API routes
   dashboard/    the main authenticated experience (tabbed)
   onboarding/   multilingual intake wizard
 components/     shared React components (AutofillAgent, AutofillSetup, i18n, …)
-lib/            server + client helpers (claude, supabase, eligibility, types, i18n)
+lib/            server + client helpers (openai, supabase, eligibility, types, i18n)
 data/           FPL table, providers directory
 database/       25-program benefits rule database + schema docs
 locales/        en.json master string set (other languages generated on demand)
