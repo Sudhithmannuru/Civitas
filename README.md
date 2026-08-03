@@ -153,4 +153,4 @@ proxy.ts        Next.js 16 middleware (auth + route protection)
 
 ## Credits
 
-Made by **Jotin Samayamantri, Aarit Choudhary, and Arnav Sahoo**.
+Made by **Sudhith Mannuru, Arshia Bajaj, Gurhans Dhillion, and Sujaal Gelle**.
