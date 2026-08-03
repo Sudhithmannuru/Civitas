@@ -158,4 +158,6 @@ proxy.ts        Next.js 16 middleware (auth + route protection)
 
 Built for the **USAII Global AI Hackathon**, where it placed **2nd out of 321 teams**.
 
-**Jotin Samayamantri** — primary technical contributor on the programming side.
+- **Jotin Samayamantri** — primary technical contributor on the programming side.
+- **Aarit Choudhary** — led the video side, producing the pitch video.
+- **Arnav Sahoo** — worked on the text submission and the video.
