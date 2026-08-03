@@ -19,7 +19,7 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Wayfinder — Find the Benefits You Qualify For",
+  title: "Civitas — Find the Benefits You Qualify For",
   description:
     "Free, private help for immigrants and refugees to find U.S. government benefits and understand your next steps.",
 };

@@ -7,12 +7,12 @@
 //                                         do NOT advance
 //   C) a review/submit page w/ SSN     -> hand SSN to the user, never auto-submit
 //
-// Run (loads the key from .env.local; uses ~3 Haiku calls, well under 30¢):
+// Run (loads the key from .env.local; uses ~3 gpt-4o-mini calls, well under 30¢):
 //   node --env-file=.env.local --experimental-strip-types \
 //     --import ./scripts/alias-register.mjs scripts/test-autofill-plan.mjs
 
-import Anthropic from "@anthropic-ai/sdk";
-import { HAIKU } from "@/lib/claude.ts";
+import OpenAI from "openai";
+import { GPT_MINI } from "@/lib/openai.ts";
 import { PLANNER_SYSTEM, buildPlannerUserMessage, validatePlan } from "@/lib/autofill/plan.ts";
 
 const PROFILE = {
@@ -76,13 +76,15 @@ const SNAP_C = {
 };
 
 async function plan(client, snapshot, asked = []) {
-  const res = await client.messages.create({
-    model: HAIKU,
+  const res = await client.chat.completions.create({
+    model: GPT_MINI,
     max_tokens: 1500,
-    system: PLANNER_SYSTEM,
-    messages: [{ role: "user", content: buildPlannerUserMessage(snapshot, PROFILE, asked) }],
+    messages: [
+      { role: "system", content: PLANNER_SYSTEM },
+      { role: "user", content: buildPlannerUserMessage(snapshot, PROFILE, asked) },
+    ],
   });
-  const raw = res.content[0]?.type === "text" ? res.content[0].text : "";
+  const raw = res.choices[0]?.message?.content ?? "";
   return { plan: validatePlan(raw, snapshot), tokens: res.usage };
 }
 
@@ -99,8 +101,8 @@ const checks = [];
 function check(name, ok) { checks.push({ name, ok }); }
 
 async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) { console.error("Set ANTHROPIC_API_KEY (use --env-file=.env.local)"); process.exit(2); }
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  if (!process.env.OPENAI_API_KEY) { console.error("Set OPENAI_API_KEY (use --env-file=.env.local)"); process.exit(2); }
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const A = await plan(client, SNAP_A);
   show("A: known fields", A.plan);

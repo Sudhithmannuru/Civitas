@@ -1,23 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { completeChat, GPT } from "@/lib/openai";
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Form field mapping (Sonnet).
+// Form field mapping (gpt-4o).
 //
 // The browser detects a form's fields (exact AcroForm rectangles, or label-
 // anchored spots from the rendered text layer) and sends each one's nearby
 // label/context plus the user's NON-SENSITIVE saved data (onboarding profile +
-// document fields). Sonnet decides, per field, which value belongs there — this
-// handles coded field names, abbreviations, and odd labels that regex can't.
+// document fields). The model decides, per field, which value belongs there —
+// this handles coded field names, abbreviations, and odd labels that regex can't.
 //
 // Safety:
 //   • Sensitive fields (SSN, A-Number, USCIS #, passport, bank, password,
 //     signature) are NEVER filled — the model flags them and we also enforce it
 //     by scrubbing every returned value.
 //   • The model may only use values present in DATA; it is told never to invent.
-//   • One Sonnet call per form load — cheap and bounded.
+//   • One model call per form load — cheap and bounded.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const runtime = "nodejs";
@@ -129,28 +129,25 @@ export async function POST(req: NextRequest) {
     JSON.stringify(fields),
   ].join("\n");
 
-  const claude = getClaudeClient();
   let rawText = "";
   try {
-    const response = await claude.messages.create({
-      model: SONNET,
-      max_tokens: 2_000,
+    rawText = await completeChat({
+      model: GPT,
+      maxTokens: 2_000,
       system: SYSTEM,
-      messages: [{ role: "user", content: userMessage }],
+      user: userMessage,
     });
-    const first = response.content[0];
-    rawText = first && first.type === "text" ? first.text : "";
   } catch (error) {
-    if (error instanceof Anthropic.RateLimitError) {
+    if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "Busy, try again shortly." }, { status: 429 });
     }
     if (
-      error instanceof Anthropic.AuthenticationError ||
-      error instanceof Anthropic.PermissionDeniedError
+      error instanceof OpenAI.AuthenticationError ||
+      error instanceof OpenAI.PermissionDeniedError
     ) {
       return NextResponse.json({ error: "Temporarily unavailable." }, { status: 503 });
     }
-    if (error instanceof Anthropic.APIError) {
+    if (error instanceof OpenAI.APIError) {
       return NextResponse.json({ error: "Could not map fields." }, { status: 502 });
     }
     return NextResponse.json({ error: "Something went wrong." }, { status: 500 });

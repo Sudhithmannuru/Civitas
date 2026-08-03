@@ -1,6 +1,6 @@
 // Extension popup script.
 
-// Exact Vercel hostname(s) we deploy Wayfinder under. NEVER use a wildcard like
+// Exact Vercel hostname(s) we deploy Civitas under. NEVER use a wildcard like
 // "*.vercel.app" — that namespace is shared, so any attacker could deploy there
 // and be auto-trusted. Add your real production host here, e.g.
 // "wayfinder.vercel.app". Must also be listed in manifest.json (host_permissions
@@ -37,8 +37,8 @@ async function init() {
 
 function renderUnpaired() {
   html(`
-    <p class="status">Connect to your Wayfinder account to fill forms automatically.</p>
-    <button class="btn btn-primary" id="btn-pair">Connect Wayfinder Account</button>
+    <p class="status">Connect to your Civitas account to fill forms automatically.</p>
+    <button class="btn btn-primary" id="btn-pair">Connect Civitas Account</button>
   `);
   document.getElementById("btn-pair")!.addEventListener("click", startPairing);
 }
@@ -48,13 +48,13 @@ function renderPaired(pairedAt?: number) {
   html(`
     <div class="success">Connected ✓</div>
     <p class="paired-info">Paired on ${date}</p>
-    <p class="status" style="margin-top:8px">Open Wayfinder in your browser and use <strong>Fill out with AI</strong> on a benefit to fill forms.</p>
+    <p class="status" style="margin-top:8px">Open Civitas in your browser and use <strong>Fill out with AI</strong> on a benefit to fill forms.</p>
     <button class="btn btn-secondary" id="btn-disconnect" style="margin-top:12px">Disconnect</button>
   `);
   document.getElementById("btn-disconnect")!.addEventListener("click", disconnect);
 }
 
-// Guess which Wayfinder server to pair against by looking at open tabs, falling
+// Guess which Civitas server to pair against by looking at open tabs, falling
 // back to a previously-saved origin, then production.
 async function detectOrigin(): Promise<string> {
   try {
@@ -81,7 +81,7 @@ async function startPairing() {
   const origin = await detectOrigin();
 
   html(`
-    <p class="status">In Wayfinder, open <strong>Settings → Auto-fill</strong> and click <strong>"Set up auto-fill"</strong> to get a code, then enter it here:</p>
+    <p class="status">In Civitas, open <strong>Settings → Auto-fill</strong> and click <strong>"Set up auto-fill"</strong> to get a code, then enter it here:</p>
     <div style="margin: 10px 0;">
       <input id="code-input" type="text" maxlength="8" placeholder="e.g. AB1C2D" style="width:100%;padding:10px;border:2px solid #e5e7eb;border-radius:8px;font-family:monospace;font-size:18px;letter-spacing:3px;text-align:center;text-transform:uppercase" />
     </div>
@@ -92,7 +92,7 @@ async function startPairing() {
   const submit = async () => {
     const code = (document.getElementById("code-input") as HTMLInputElement).value.trim().toUpperCase();
     // Origin is auto-detected (see detectOrigin); persist it so the background
-    // worker can reach the right Wayfinder server when exchanging the code.
+    // worker can reach the right Civitas server when exchanging the code.
     const originVal = origin.trim().replace(/\/$/, "");
     if (originVal) await chrome.storage.local.set({ wf_origin: originVal });
     void exchangeCode(code);
@@ -112,7 +112,7 @@ async function exchangeCode(code: string) {
   const res = (await Promise.race([
     chrome.runtime.sendMessage({ type: "exchange-code", code }),
     new Promise((resolve) =>
-      setTimeout(() => resolve({ ok: false, error: "Timed out. Is the Wayfinder server running, and is this the code currently shown in the app?" }), 8000),
+      setTimeout(() => resolve({ ok: false, error: "Timed out. Is the Civitas server running, and is this the code currently shown in the app?" }), 8000),
     ),
   ])) as { ok: boolean; error?: string } | null;
 

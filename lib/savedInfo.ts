@@ -17,7 +17,7 @@ import { isSensitiveName, type ProfileValues } from "@/lib/formFill";
 
 export type SavedInfo = Record<string, string>;
 
-const STORAGE_KEY = "wayfinder:saved-info";
+const STORAGE_KEY = "civitas:saved-info";
 
 // Canonical keys we understand. Aligns with ProfileValues so overlaying is
 // trivial, plus a couple of display-only extras (email, countryOfOrigin).
@@ -129,7 +129,7 @@ export function setSavedInfo(patch: SavedInfo): SavedInfo {
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
     // Let any live "My Information" views refresh.
-    window.dispatchEvent(new CustomEvent("wayfinder:saved-info-changed"));
+    window.dispatchEvent(new CustomEvent("civitas:saved-info-changed"));
   } catch {
     /* quota or disabled storage — non-fatal */
   }
@@ -140,7 +140,7 @@ export function clearSavedInfo(): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.removeItem(STORAGE_KEY);
-    window.dispatchEvent(new CustomEvent("wayfinder:saved-info-changed"));
+    window.dispatchEvent(new CustomEvent("civitas:saved-info-changed"));
   } catch {
     /* ignore */
   }

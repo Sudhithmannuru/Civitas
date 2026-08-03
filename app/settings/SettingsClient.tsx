@@ -111,7 +111,7 @@ function profileToForm(p: Profile): FormData {
   };
 }
 
-// What Wayfinder has learned about the user, merged the same way the autofill
+// What Civitas has learned about the user, merged the same way the autofill
 // agent merges it: saved profile first, then each uploaded document (newest
 // first). Sensitive numbers are never part of this.
 // Order of fields shown in "My Information". Labels come from i18n
@@ -142,8 +142,8 @@ export default function SettingsClient({
   useEffect(() => {
     const refresh = () => setSavedInfoState(getSavedInfo());
     refresh();
-    window.addEventListener("wayfinder:saved-info-changed", refresh);
-    return () => window.removeEventListener("wayfinder:saved-info-changed", refresh);
+    window.addEventListener("civitas:saved-info-changed", refresh);
+    return () => window.removeEventListener("civitas:saved-info-changed", refresh);
   }, []);
 
   // Build "My Information": the profile + every uploaded document (newest first),
@@ -502,7 +502,7 @@ export default function SettingsClient({
         <div className="mx-auto flex max-w-2xl items-center justify-between">
           <span className="flex items-center gap-2 font-display font-semibold text-text">
             <Logo size={26} />
-            Wayfinder
+            Civitas
           </span>
           <a
             href="/dashboard"

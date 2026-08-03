@@ -19,7 +19,7 @@
     },
     "hero": {
       "headline": "Un nuevo hogar comienza cuando sabes el camino.",
-      "subheadline": "Wayfinder encuentra los beneficios y papeleos que calificas, explica todo en tu idioma, y te guía paso a paso, antes de que pasen los plazos.",
+      "subheadline": "Civitas encuentra los beneficios y papeleos que calificas, explica todo en tu idioma, y te guía paso a paso, antes de que pasen los plazos.",
       "cardLabel": "Comienza en tu idioma",
       "searchPlaceholder": "Busca más de 100 idiomas…",
       "cta": "Comienza gratis"
@@ -34,7 +34,7 @@
         },
         {
           "title": "Encontramos lo que te sirve",
-          "body": "Wayfinder busca en una base de datos de reglas de beneficios de EE.UU. y te muestra exactamente para qué calificas, con fuentes, nunca adivina."
+          "body": "Civitas busca en una base de datos de reglas de beneficios de EE.UU. y te muestra exactamente para qué calificas, con fuentes, nunca adivina."
         },
         {
           "title": "Actúa a tiempo",
@@ -52,7 +52,7 @@
         },
         {
           "title": "Asistente de Formularios con IA",
-          "body": "Wayfinder explica cada campo y redacta respuestas en tu idioma. Nunca toca números sensibles, y nunca envía nada por ti."
+          "body": "Civitas explica cada campo y redacta respuestas en tu idioma. Nunca toca números sensibles, y nunca envía nada por ti."
         },
         {
           "title": "Bóveda de Documentos",
@@ -60,19 +60,19 @@
         },
         {
           "title": "Buscar Ayuda",
-          "body": "Para cualquier asunto legal, Wayfinder te conecta con un abogado autorizado o representante acreditado cerca de ti. Una persona, no una adivinanza."
+          "body": "Para cualquier asunto legal, Civitas te conecta con un abogado autorizado o representante acreditado cerca de ti. Una persona, no una adivinanza."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Cualquier idioma",
       "title": "En tus palabras, desde la primera pantalla.",
-      "body": "Elige tu idioma antes de registrarte, y Wayfinder lo hablará en todas partes, en cada paso del camino."
+      "body": "Elige tu idioma antes de registrarte, y Civitas lo hablará en todas partes, en cada paso del camino."
     },
     "trust": {
       "badge": "Tu seguridad es lo primero",
       "title": "Nunca compartimos tu información con inmigración.",
-      "body": "Tus documentos están encriptados y solo para ti. Wayfinder nunca llena identificadores sensibles, nunca envía formularios, y cada decisión legal es tomada por una persona real y autorizada, no por una máquina.",
+      "body": "Tus documentos están encriptados y solo para ti. Civitas nunca llena identificadores sensibles, nunca envía formularios, y cada decisión legal es tomada por una persona real y autorizada, no por una máquina.",
       "points": [
         "Encriptado y privado",
         "Fuentes que puedes verificar",
@@ -176,7 +176,7 @@
       "errorReadFailed": "No pudimos leer tu documento. Por favor intenta de nuevo, u omite y contesta las preguntas.",
       "errorUnreachable": "No pudimos llegar al lector de documentos. Por favor intenta de nuevo, u omite y contesta las preguntas.",
       "exampleI94": "Usa un I-94 de ejemplo (para jueces)",
-      "exampleI94Hint": "¿Sin documentos a mano? Carga un I-94 de muestra para ver cómo Wayfinder lo lee."
+      "exampleI94Hint": "¿Sin documentos a mano? Carga un I-94 de muestra para ver cómo Civitas lo lee."
     },
     "confirm": {
       "question": "Por favor verifica lo que leímos de tus documentos",
@@ -383,10 +383,10 @@
       "getFormHelp": "Obtener ayuda de formulario",
       "applyWithAiTag": "Sin inicio de sesión",
       "applyWithAiTitle": "Solicita con IA — Iowa SNAP / FIP / Asistencia en Efectivo para Refugiados",
-      "applyWithAiBody": "Solicitud en línea oficial de Iowa para SNAP (asistencia alimentaria), FIP (asistencia en efectivo) y Asistencia en Efectivo para Refugiados — puedes solicitar como invitado sin cuenta. Pregunta sobre todos en tu hogar, tus ingresos, gastos y estado migratorio, y te permite cargar documentos de prueba. Wayfinder abre el sitio oficial y llena lo que puede desde tu información guardada; revisas cada respuesta, completas cualquier cosa sensible tú mismo, y envías. Porque puede afectar tu caso de inmigración, revísalo con un abogado o representante acreditado antes de enviar.",
+      "applyWithAiBody": "Solicitud en línea oficial de Iowa para SNAP (asistencia alimentaria), FIP (asistencia en efectivo) y Asistencia en Efectivo para Refugiados — puedes solicitar como invitado sin cuenta. Pregunta sobre todos en tu hogar, tus ingresos, gastos y estado migratorio, y te permite cargar documentos de prueba. Civitas abre el sitio oficial y llena lo que puede desde tu información guardada; revisas cada respuesta, completas cualquier cosa sensible tú mismo, y envías. Porque puede afectar tu caso de inmigración, revísalo con un abogado o representante acreditado antes de enviar.",
       "applyWithAiButton": "⚡ Llenar con IA",
       "applyWithAiDeadline": "Solicita en cualquier momento",
-      "applyWithAiHow": "Wayfinder abre el sitio oficial en una nueva pestaña y llena lo que puede desde tu información guardada. Te pregunta sobre cualquier cosa que no sabe, deja campos sensibles, códigos y captchas para ti, y se detiene antes de enviar para que puedas revisar y enviar tú mismo.",
+      "applyWithAiHow": "Civitas abre el sitio oficial en una nueva pestaña y llena lo que puede desde tu información guardada. Te pregunta sobre cualquier cosa que no sabe, deja campos sensibles, códigos y captchas para ti, y se detiene antes de enviar para que puedas revisar y enviar tú mismo.",
       "daysLeftToApply": "{days} días restantes para solicitar",
       "oneDayLeftToApply": "1 día restante para solicitar",
       "deadlinePassedClear": "Esta fecha límite ha pasado",
@@ -432,7 +432,7 @@
       "exampleI94": "Usa un I-94 de ejemplo (para jueces)",
       "exampleI94Hint": "¿Sin documento a mano? Añade un I-94 de muestra para ver la extracción en acción.",
       "recommendedTitle": "Documentos recomendados",
-      "recommendedHint": "Añade estos para que Wayfinder pueda leerlos una vez y llenarlos en tus solicitudes. Cuantos más añadas, menos retipeas.",
+      "recommendedHint": "Añade estos para que Civitas pueda leerlos una vez y llenarlos en tus solicitudes. Cuantos más añadas, menos retipeas.",
       "added": "añadido",
       "recommendedItems": {
         "i94": {
@@ -474,7 +474,7 @@
       "openInFiller": "Abrir en llenador de formularios",
       "secureLine": "Tus documentos se procesan de forma segura y nunca se comparten con autoridades de inmigración.",
       "send": "Enviar",
-      "contextNote": "Wayfinder usa la información que ya has dado para responder en tu situación.",
+      "contextNote": "Civitas usa la información que ya has dado para responder en tu situación.",
       "suggestionsLabel": "Preguntas comunes"
     },
     "findHelp": {
@@ -509,7 +509,7 @@
     "dismiss": "Descartar",
     "footer": {
       "privacy": "Tu información está encriptada y es privada. Nunca la compartimos con autoridades de inmigración.",
-      "disclaimer": "Wayfinder no proporciona asesoría legal."
+      "disclaimer": "Civitas no proporciona asesoría legal."
     },
     "settings": {
       "title": "Configuración",
@@ -523,7 +523,7 @@
       "saved": "Guardado",
       "saving": "Guardando...",
       "myInfoTitle": "Mi Información",
-      "myInfoHint": "Guardada desde tus respuestas de registro, tus documentos y formularios que has llenado — Wayfinder la reutiliza para que no retipees.",
+      "myInfoHint": "Guardada desde tus respuestas de registro, tus documentos y formularios que has llenado — Civitas la reutiliza para que no retipees.",
       "sensitiveNote": "Los números sensibles (SSN, Número A, pasaporte, banco) nunca se guardan aquí.",
       "myInfoEmpty": "Nada aún. Añade tus documentos en Mis Documentos (o termina el registro) y aparecerán aquí.",
       "myInfoLabels": {
@@ -547,15 +547,15 @@
       "intro": "Autocompletar te ayuda a poner tu información guardada en sitios web oficiales del gobierno para ti, para que no tengas que retipearla en cada formulario.",
       "privacy": "Tus números sensibles — tu Número de Seguro Social y Número A — nunca se envían. Siempre los ingresas tú mismo.",
       "setUp": "Configurar autocompletar",
-      "judgeNote": "Para jueces: la extensión de Wayfinder aún no se publica en la Chrome Web Store, así que la cargarás manualmente. Toma unos dos minutos — solo sigue los pasos a continuación.",
-      "downloadExtension": "Descarga la extensión de Wayfinder (.zip)",
+      "judgeNote": "Para jueces: la extensión de Civitas aún no se publica en la Chrome Web Store, así que la cargarás manualmente. Toma unos dos minutos — solo sigue los pasos a continuación.",
+      "downloadExtension": "Descarga la extensión de Civitas (.zip)",
       "howToTitle": "Cómo configurarlo (una vez, ~2 minutos)",
-      "howToStep1": "Descarga la extensión usando el botón anterior, luego descomprimela. Obtendrás una carpeta llamada \"wayfinder-extension\".",
+      "howToStep1": "Descarga la extensión usando el botón anterior, luego descomprimela. Obtendrás una carpeta llamada \"civitas-extension\".",
       "howToStep2": "Abre una nueva pestaña de Chrome y ve a chrome://extensions. Activa \"Modo de desarrollador\" con el interruptor en la esquina superior derecha.",
-      "howToStep3": "Haz clic en \"Cargar extensión sin empaquetar\" (arriba a la izquierda), luego selecciona la carpeta \"wayfinder-extension\" descomprimida.",
+      "howToStep3": "Haz clic en \"Cargar extensión sin empaquetar\" (arriba a la izquierda), luego selecciona la carpeta \"civitas-extension\" descomprimida.",
       "howToStep4": "Haz clic en \"Configurar autocompletar\" a continuación para obtener un código de conexión.",
-      "howToStep5": "Haz clic en el icono de Wayfinder en tu barra de herramientas de Chrome (es posible que necesites el menú de pieza de rompecabezas para encontrarlo), luego ingresa el código para conectar.",
-      "howToStep6": "Abre tu Plan de Acción y haz clic en \"Llenar con IA\" en un programa. Wayfinder abre el sitio web oficial y llena lo que puede — tú revisas y envías tú mismo.",
+      "howToStep5": "Haz clic en el icono de Civitas en tu barra de herramientas de Chrome (es posible que necesites el menú de pieza de rompecabezas para encontrarlo), luego ingresa el código para conectar.",
+      "howToStep6": "Abre tu Plan de Acción y haz clic en \"Llenar con IA\" en un programa. Civitas abre el sitio web oficial y llena lo que puede — tú revisas y envías tú mismo.",
       "generating": "Preparando tu código...",
       "newCode": "Obtener un nuevo código",
       "codeInstructions": "Ingresa este código para conectar autocompletar:",
@@ -569,7 +569,7 @@
       "genericError": "No pudimos preparar tu código. Por favor intenta de nuevo.",
       "networkError": "No pudimos conectar. Por favor verifica tu internet e intenta de nuevo.",
       "createAccountTitle": "Necesitarás crear una cuenta para continuar",
-      "createAccountBody": "Este sitio requiere una cuenta antes de que puedas solicitar. Crea una en la pestaña del sitio que acaba de abrirse, luego vuelve aquí y haz clic en Reanudar — Wayfinder continuará donde lo dejó.",
+      "createAccountBody": "Este sitio requiere una cuenta antes de que puedas solicitar. Crea una en la pestaña del sitio que acaba de abrirse, luego vuelve aquí y haz clic en Reanudar — Civitas continuará donde lo dejó.",
       "createAccountResume": "He creado mi cuenta — reanudar",
       "openPortal": "Abre el portal",
       "working": "Trabajando…",
@@ -577,14 +577,14 @@
       "fillingHint": "Leyendo la página, decidiendo qué llenar e ingresando tu información. Esto puede tomar un momento.",
       "assistantTitle": "Llenar con IA",
       "reviewTitle": "Revisa antes de enviar",
-      "reviewIntro": "Wayfinder llenó lo que pudo de forma segura y se detuvo antes de enviar. Revisa la información a continuación, luego continúa al sitio para revisar y enviar.",
-      "reviewInfoTitle": "Información que Wayfinder usó",
+      "reviewIntro": "Civitas llenó lo que pudo de forma segura y se detuvo antes de enviar. Revisa la información a continuación, luego continúa al sitio para revisar y enviar.",
+      "reviewInfoTitle": "Información que Civitas usó",
       "reviewNoInfo": "Ninguna información guardada aún.",
       "reviewConfirm": "He revisado toda la información anterior y es correcta.",
       "attorneyNote": "Esta solicitud puede afectar tu caso de inmigración. Por favor ten a un abogado autorizado o representante acreditado revisar esto contigo antes de enviar.",
       "attorneyConfirm": "Un abogado o representante acreditado ha revisado esto conmigo.",
       "proceedToSubmit": "Continúa al sitio para enviar",
-      "neverSubmitNote": "Wayfinder nunca envía por ti — tú haces el envío final en el sitio oficial.",
+      "neverSubmitNote": "Civitas nunca envía por ti — tú haces el envío final en el sitio oficial.",
       "agent": {
         "openingPortal": "Abriendo el portal de beneficios…",
         "readingPage": "Leyendo la página actual…",
@@ -617,7 +617,7 @@
       "statePortalOnly": "Este programa se solicita a través del portal de tu estado — no hay un formulario único para llenar. Usa el enlace oficial para comenzar tu solicitud.",
       "openOfficialSite": "Abre el sitio de solicitud oficial",
       "demoLabel": "Formulario de ejemplo — para los jueces",
-      "demoDescription": "No se necesita carga — este es un Formulario W-9 real del IRS que puedes probar ahora para ver a Wayfinder llenar un formulario de gobierno real.",
+      "demoDescription": "No se necesita carga — este es un Formulario W-9 real del IRS que puedes probar ahora para ver a Civitas llenar un formulario de gobierno real.",
       "tryDemo": "Prueba con el Formulario W-9 del IRS",
       "aiFilling": "Llenando tu formulario con IA…",
       "checkboxLabel": "Casilla de verificación",

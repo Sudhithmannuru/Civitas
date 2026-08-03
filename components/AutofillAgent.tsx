@@ -260,7 +260,7 @@ export default function AutofillAgent({
       }
 
       // 3) Missing info → ask the user (one question; we re-plan after the answer).
-      //    Stay on Wayfinder — the question is answered here in the panel, NOT on
+      //    Stay on Civitas — the question is answered here in the panel, NOT on
       //    the portal, so we do NOT switch tabs.
       if (asks.length) {
         const a = asks[0];
@@ -299,7 +299,7 @@ export default function AutofillAgent({
       // 6) Done, or stuck with nothing left to do → take the user to the portal
       //    to review and submit (we never submit for them).
       if (done || stuckRef.current >= 1) {
-        // Same as review: hold on Wayfinder for the review gate before submit.
+        // Same as review: hold on Civitas for the review gate before submit.
         setPhase("done");
         log("ok", done ? af.agent.allDone : af.agent.nothingLeft);
         return;
@@ -385,7 +385,7 @@ export default function AutofillAgent({
 
   const busy = phase === "running";
 
-  // Everything Wayfinder knows about the user (their saved "My Information"),
+  // Everything Civitas knows about the user (their saved "My Information"),
   // shown in the review gate so they can verify it before submitting.
   const infoRows: Array<{ label: string; value: string }> =
     phase === "review" || phase === "done"
@@ -412,16 +412,16 @@ export default function AutofillAgent({
 
         {/* Body */}
         <div className="flex-1 overflow-y-auto px-5 py-4">
-          {phase === "checking" && <p className="text-sm text-text-muted">Checking for the Wayfinder browser extension…</p>}
+          {phase === "checking" && <p className="text-sm text-text-muted">Checking for the Civitas browser extension…</p>}
 
           {phase === "no_extension" && (
             <div className="rounded-[--radius-md] border border-review-100 bg-review-50 px-4 py-3 text-sm text-review-700">
-              <p className="font-semibold">Can&apos;t reach the Wayfinder extension on this page.</p>
+              <p className="font-semibold">Can&apos;t reach the Civitas extension on this page.</p>
               <p className="mt-1">
                 <strong>If you just installed or reloaded the extension, refresh this page</strong> (⌘R / Ctrl-R) and try again — reloading the extension disconnects it from open tabs until they reload.
               </p>
               <p className="mt-2">
-                If it&apos;s not connected yet, open <strong>Settings → Auto-fill</strong> to connect it. The extension lets Wayfinder read and fill the portal page in your browser — your data never leaves your machine except the non-sensitive facts needed to fill a field.
+                If it&apos;s not connected yet, open <strong>Settings → Auto-fill</strong> to connect it. The extension lets Civitas read and fill the portal page in your browser — your data never leaves your machine except the non-sensitive facts needed to fill a field.
               </p>
               <button
                 onClick={() => window.location.reload()}
@@ -454,7 +454,7 @@ export default function AutofillAgent({
 
               {feed.length === 0 && !busy ? (
                 <p className="text-sm text-text-muted">
-                  Wayfinder will open the application portal, fill what it can from your profile, ask you about anything it doesn&apos;t know, and pause for anything sensitive. It never submits — you always do that yourself.
+                  Civitas will open the application portal, fill what it can from your profile, ask you about anything it doesn&apos;t know, and pause for anything sensitive. It never submits — you always do that yourself.
                 </p>
               ) : (
                 <ul className="flex flex-col gap-2.5">
@@ -576,7 +576,7 @@ export default function AutofillAgent({
 
               {/* Review-and-submit gate. The agent never submits; before we send
                   the user to the official site to submit, they must review the
-                  information Wayfinder used and confirm it — plus confirm an
+                  information Civitas used and confirm it — plus confirm an
                   attorney reviewed it, when the form needs one. The "continue"
                   button stays locked until those boxes are checked. */}
               {(phase === "review" || phase === "done") && (
@@ -661,7 +661,7 @@ export default function AutofillAgent({
           )}
           <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-xs text-text-faint">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
-            Wayfinder never enters sensitive info or submits for you.
+            Civitas never enters sensitive info or submits for you.
           </p>
         </div>
       </div>

@@ -217,7 +217,7 @@ export default function DashboardClient({
             {/* Brand */}
             <Link href="/" className="flex shrink-0 items-center gap-2.5 focus-visible:outline-none">
               <Logo size={30} />
-              <span className="font-display text-lg font-bold text-text">Wayfinder</span>
+              <span className="font-display text-lg font-bold text-text">Civitas</span>
             </Link>
 
             {/* Inline section nav (desktop) */}

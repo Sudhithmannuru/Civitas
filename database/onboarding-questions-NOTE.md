@@ -12,7 +12,7 @@
 2. **Scan** — "Take a photo of your I-94 (and work permit if you have one)", with a
    skip option ("I don't have my documents — answer questions instead").
 3. **Confirm** — a single scrollable list of *every* value the vision model read
-   (`app/api/onboarding/extract/route.ts`, `claude-sonnet-4-6`, `max_tokens` 1000,
+   (`app/api/onboarding/extract/route.ts`, `gpt-4o`, `max_tokens` 1000,
    image/PDF input → JSON). Each value is editable inline; low-confidence fields are
    flagged **"Please check"** at the top. One **"Confirm and continue"** button. We
    never auto-proceed on extracted data.

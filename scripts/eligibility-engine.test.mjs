@@ -1,5 +1,5 @@
 // Standalone test for the deterministic eligibility engine.
-// No DB, no Claude. Run with:  npx tsx scripts/eligibility-engine.test.mjs
+// No DB, no LLM. Run with:  npx tsx scripts/eligibility-engine.test.mjs
 //
 // It imports the pure engine (TS) and the real benefits.json + FPL table,
 // runs synthetic profiles, and asserts expected per-benefit statuses.

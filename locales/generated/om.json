@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Manaa haaraa jalqaba karaa beekuudhaaf jalqaba.",
-      "subheadline": "Wayfinder faayidaa fi hojii warqaa ati miidhaaf gaariin argamsiisa, waan hundaa afaan keetiin ibsa, fi tarkaanfi tarkaaniif si geessisa, yeroo dhaameef dura.",
+      "subheadline": "Civitas faayidaa fi hojii warqaa ati miidhaaf gaariin argamsiisa, waan hundaa afaan keetiin ibsa, fi tarkaanfi tarkaaniif si geessisa, yeroo dhaameef dura.",
       "cardLabel": "Afaan keetin jalqaba",
       "searchPlaceholder": "Afaan 100+ barbaadi…",
       "cta": "Kana kallattii jalqaba"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Waan isaanii barbaadu arganna",
-          "body": "Wayfinder kuusaa seeraa faayidaa USA murtaa'e sakatta'a, waan ati miidhaaf gaariin argamsiisa, bu'aa citutti kaasaa, kunuu hin tilmaamnu."
+          "body": "Civitas kuusaa seeraa faayidaa USA murtaa'e sakatta'a, waan ati miidhaaf gaariin argamsiisa, bu'aa citutti kaasaa, kunuu hin tilmaamnu."
         },
         {
           "title": "Yeroo keessa hojjedh",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Gargaarsi AI Foormaa",
-          "body": "Wayfinder kutaa tokkoon tokkoon ibsa, deebii foormaalatti koo afaan keettin qajeela. Lakkoo waariitu hin tuquun, foormaalaa hunda keessan hin ergitu."
+          "body": "Civitas kutaa tokkoon tokkoon ibsa, deebii foormaalatti koo afaan keettin qajeela. Lakkoo waariitu hin tuquun, foormaalaa hunda keessan hin ergitu."
         },
         {
           "title": "Aantii Warqaa",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Gargaarsa Barbaadi",
-          "body": "Waan seera akka hunda keessaniif, Wayfinder si waliin qajeessiisa aboogaadii itti galaa yookiin eegaa itti galaa karaa kee jiru. Nama tokkaa, kunuu hin tilmaamnu."
+          "body": "Waan seera akka hunda keessaniif, Civitas si waliin qajeessiisa aboogaadii itti galaa yookiin eegaa itti galaa karaa kee jiru. Nama tokkaa, kunuu hin tilmaamnu."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Afaan kamuu",
       "title": "Jechaa keetin, sceena jalqabaa irra jalqabee.",
-      "body": "Afaan kee jalqaba filadhu dura seenuun galchuu, Wayfinder keessaa jechaa keesa dubbata, tarkaanfi hundaa."
+      "body": "Afaan kee jalqaba filadhu dura seenuun galchuu, Civitas keessaa jechaa keesa dubbata, tarkaanfi hundaa."
     },
     "trust": {
       "badge": "Galchituun kee jalqaba",
       "title": "Odeeffannaa kee eegaa seera hin qoratuu.",
-      "body": "Warqaawwan kee ijaaraa, nam dhuunfaa qofa. Wayfinder lakkoo waariitu hin tuquun, foormaalaa hin ergitu, fi murtii seera hundaa namni itti galaa, kunuu maashiinan hin godhu.",
+      "body": "Warqaawwan kee ijaaraa, nam dhuunfaa qofa. Civitas lakkoo waariitu hin tuquun, foormaalaa hin ergitu, fi murtii seera hundaa namni itti galaa, kunuu maashiinan hin godhu.",
       "points": [
         "Ijaaraa fi dhuunfaa",
         "Bu'aa akka sakatta'e",
@@ -405,7 +405,7 @@
       "openInFiller": "Guuttuu foormaa keessa banuu",
       "secureLine": "Warqaawwan kee dhuunfaa keessa hojjedha, eegaa seera hin qoratuu.",
       "send": "Erguu",
-      "contextNote": "Wayfinder odeeffannaa dha siif duraan kennite fayyadamuun haala keetiif deebii kenna.",
+      "contextNote": "Civitas odeeffannaa dha siif duraan kennite fayyadamuun haala keetiif deebii kenna.",
       "suggestionsLabel": "Gaaffii baay'ee"
     },
     "explainer": {
@@ -449,7 +449,7 @@
     "dismiss": "Bahuu",
     "footer": {
       "privacy": "Odeeffannaa kee ijaaraa fi dhuunfaa. Eegaa seera hin qoratuu.",
-      "disclaimer": "Wayfinder gorsa seera hin kennu."
+      "disclaimer": "Civitas gorsa seera hin kennu."
     },
     "settings": {
       "title": "Qindaa'inni",

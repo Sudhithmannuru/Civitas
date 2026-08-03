@@ -3,7 +3,7 @@ import { getTranslations } from "@/lib/translations";
 import { SUPPORTED_LANGUAGES } from "@/lib/languages";
 
 // Server-only: getTranslations reaches the service-role Supabase cache and the
-// Claude (Sonnet) translator. Keep this off the Edge runtime so those server
+// OpenAI translator. Keep this off the Edge runtime so those server
 // secrets never ship to the browser.
 export const runtime = "nodejs";
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { completeChat, imagePart, pdfPart, GPT } from "@/lib/openai";
 import { EXTRACT_PROMPT, parseExtraction, type DocType } from "@/lib/onboarding/i94Extract";
 import { normalizeImageForOcr } from "@/lib/onboarding/ocrImage";
 
@@ -47,9 +47,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: `Please upload at most ${MAX_FILES} documents at a time.` }, { status: 400 });
   }
 
-  // Build Claude content blocks, and keep each file's bytes so we can persist the
+  // Build OpenAI content parts, and keep each file's bytes so we can persist the
   // uploaded documents to the user's vault after extraction.
-  const content: Anthropic.ContentBlockParam[] = [];
+  const parts: OpenAI.Chat.ChatCompletionContentPart[] = [];
   const uploaded: { file: File; bytes: ArrayBuffer; mediaType: string }[] = [];
   for (const file of files) {
     if (file.size > MAX_BYTES) {
@@ -71,10 +71,8 @@ export async function POST(req: NextRequest) {
     // dates). PDFs are already high-resolution, so they pass through untouched.
     uploaded.push({ file, bytes: ab, mediaType: type });
     if (isPdf) {
-      content.push({
-        type: "document",
-        source: { type: "base64", media_type: "application/pdf", data: Buffer.from(ab).toString("base64") },
-      });
+      const safeName = (file.name || "document.pdf").replace(/[^\w.\-]+/g, "_").slice(0, 80);
+      parts.push(pdfPart(safeName.endsWith(".pdf") ? safeName : `${safeName}.pdf`, Buffer.from(ab).toString("base64")));
     } else {
       let ocrData: Buffer;
       let ocrMedia: "image/jpeg" | "image/png" | "image/gif" | "image/webp";
@@ -86,32 +84,26 @@ export async function POST(req: NextRequest) {
         ocrData = Buffer.from(ab); // best-effort: fall back to the raw upload
         ocrMedia = type as "image/jpeg" | "image/png" | "image/gif" | "image/webp";
       }
-      content.push({
-        type: "image",
-        source: { type: "base64", media_type: ocrMedia, data: ocrData.toString("base64") },
-      });
+      parts.push(imagePart(ocrMedia, ocrData.toString("base64")));
     }
   }
-  content.push({ type: "text", text: EXTRACT_PROMPT });
+  parts.push({ type: "text", text: EXTRACT_PROMPT });
 
-  const claude = getClaudeClient();
   let rawText: string;
   try {
-    const response = await claude.messages.create({
-      model: SONNET,
-      max_tokens: 1000,
-      messages: [{ role: "user", content }],
+    rawText = await completeChat({
+      model: GPT,
+      maxTokens: 1000,
+      user: parts,
     });
-    const first = response.content[0];
-    rawText = first && first.type === "text" ? first.text : "";
   } catch (error) {
-    if (error instanceof Anthropic.RateLimitError) {
+    if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json(
         { error: "We're a little busy right now. Please wait a moment and try again, or skip and answer the questions instead." },
         { status: 429 }
       );
     }
-    if (error instanceof Anthropic.APIError) {
+    if (error instanceof OpenAI.APIError) {
       return NextResponse.json(
         { error: "We couldn't read your document right now. You can try again or skip and answer the questions." },
         { status: 502 }

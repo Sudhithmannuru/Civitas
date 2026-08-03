@@ -1,9 +1,9 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Independent action-plan verification pass.
 //
-// After the rules engine decides eligibility and a FIRST Claude call writes each
+// After the rules engine decides eligibility and a FIRST OpenAI call writes each
 // qualified program up into plain-language, translated text (the "why" sentence
-// and the next-steps), this runs a SECOND, independent Claude call that audits
+// and the next-steps), this runs a SECOND, independent OpenAI call that audits
 // every factual claim in that generated text against the curated source record
 // (database/benefits.json: official name, deadline/window, how-to-apply,
 // required documents, citations).
@@ -17,12 +17,12 @@
 //   • If the call errors or returns nothing usable, we fail safe: every claim is
 //     flagged so the caller can drop/replace it. We never pass unverified text
 //     through as if it were checked.
-//   • This is a SEPARATE messages.create call from the generator, so the check is
+//   • This is a SEPARATE chat completion from the generator, so the check is
 //     genuinely independent.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type Anthropic from "@anthropic-ai/sdk";
-import { SONNET } from "@/lib/claude";
+import type OpenAI from "openai";
+import { GPT } from "@/lib/openai";
 import type {
   BenefitRecord,
   BenefitVerification,
@@ -134,7 +134,7 @@ function failSafe(narrated: EligibilityBenefit[], reason: string): VerificationO
  * drop/flag policy uniformly.
  */
 export async function verifyNarratives(
-  client: Anthropic,
+  client: OpenAI,
   narrated: EligibilityBenefit[],
   sources: BenefitRecord[],
   summary: string,
@@ -169,13 +169,15 @@ export async function verifyNarratives(
 
   try {
     const maxTokens = Math.min(16000, 2048 + 280 * narrated.length);
-    const response = await client.messages.create({
-      model: SONNET,
+    const response = await client.chat.completions.create({
+      model: GPT,
       max_tokens: maxTokens,
-      system: VERIFY_SYSTEM,
-      messages: [{ role: "user", content: JSON.stringify(payload) }],
+      messages: [
+        { role: "system", content: VERIFY_SYSTEM },
+        { role: "user", content: JSON.stringify(payload) },
+      ],
     });
-    const text = response.content[0]?.type === "text" ? response.content[0].text : "";
+    const text = response.choices[0]?.message?.content ?? "";
     const parsed = extractJson(text) as
       | {
           benefits?: {

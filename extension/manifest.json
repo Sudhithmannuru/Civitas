@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Wayfinder Form Filler",
+  "name": "Civitas Form Filler",
   "version": "0.2.0",
-  "description": "Pre-fill government benefit forms using your Wayfinder profile. You always review before submitting.",
+  "description": "Pre-fill government benefit forms using your Civitas profile. You always review before submitting.",
   "permissions": ["storage", "activeTab", "scripting", "tabs"],
   "host_permissions": [
     "http://localhost/*",
@@ -20,7 +20,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Wayfinder Form Filler",
+    "default_title": "Civitas Form Filler",
     "default_icon": {
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png",

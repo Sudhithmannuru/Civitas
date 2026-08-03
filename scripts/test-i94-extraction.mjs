@@ -2,7 +2,7 @@
 //
 // It exercises the SAME prompt + model + parsing the app uses (no mocks): it
 // builds a faithful CBP I-94 image with known ground-truth values, sends it to
-// Claude vision, runs the shared parseExtraction(), and asserts every field
+// OpenAI vision, runs the shared parseExtraction(), and asserts every field
 // maps to the correct slot — in particular that the BIRTH DATE is never read off
 // the ENTRY date.
 //
@@ -17,9 +17,9 @@
 import { readFileSync } from "node:fs";
 import { extname } from "node:path";
 import sharp from "sharp";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { EXTRACT_PROMPT, parseExtraction } from "@/lib/onboarding/i94Extract.ts";
-import { HAIKU } from "@/lib/claude.ts";
+import { GPT } from "@/lib/openai.ts";
 
 // ── Fixtures (selectable via FIXTURE=<name>) ─────────────────────────────────
 // "classic" = modern i94.cbp.dhs.gov printout (dates like "2024 September 15").
@@ -125,9 +125,10 @@ async function buildContentBlock() {
     const data = readFileSync(arg).toString("base64");
     console.log(`Using REAL document: ${arg} (${media})`);
     if (media === "application/pdf") {
-      return { type: "document", source: { type: "base64", media_type: media, data } };
+      const name = arg.split("/").pop() || "document.pdf";
+      return { type: "file", file: { filename: name, file_data: `data:application/pdf;base64,${data}` } };
     }
-    return { type: "image", source: { type: "base64", media_type: media, data } };
+    return { type: "image_url", image_url: { url: `data:${media};base64,${data}` } };
   }
   console.log(`Using SYNTHETIC I-94 [${FIXTURE}]. Ground truth:`, GROUND_TRUTH);
   let png = await sharp(Buffer.from(buildI94Svg())).png().toBuffer();
@@ -143,7 +144,7 @@ async function buildContentBlock() {
     png = norm.data;
     console.log(`Normalized for OCR -> ${png.length} bytes`);
   }
-  return { type: "image", source: { type: "base64", media_type: "image/png", data: png.toString("base64") } };
+  return { type: "image_url", image_url: { url: `data:image/png;base64,${png.toString("base64")}` } };
 }
 
 function expected() {
@@ -156,20 +157,20 @@ function expected() {
 function val(f) { return f ? `${f.value} (${f.confidence})` : "—"; }
 
 async function main() {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error("ANTHROPIC_API_KEY is not set. Run with --env-file=.env.local");
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("OPENAI_API_KEY is not set. Run with --env-file=.env.local");
     process.exit(2);
   }
 
   const block = await buildContentBlock();
-  const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-  const res = await client.messages.create({
-    model: HAIKU,
+  const res = await client.chat.completions.create({
+    model: GPT,
     max_tokens: 1000,
     messages: [{ role: "user", content: [block, { type: "text", text: EXTRACT_PROMPT }] }],
   });
-  const rawText = res.content[0]?.type === "text" ? res.content[0].text : "";
+  const rawText = res.choices[0]?.message?.content ?? "";
 
   console.log("\n── Raw model reply ─────────────────────────────────────────");
   console.log(rawText);
@@ -185,7 +186,7 @@ async function main() {
   console.log("eligibility_date: ", val(f.eligibility_date));
   console.log("country_of_origin:", val(f.country_of_origin));
   console.log("age:              ", val(f.age));
-  console.log("tokens:", res.usage.input_tokens, "in /", res.usage.output_tokens, "out");
+  console.log("tokens:", res.usage?.prompt_tokens, "in /", res.usage?.completion_tokens, "out");
 
   const exp = expected();
   if (!exp) { console.log("\n(no expected values — skipped assertions)"); return; }

@@ -1,7 +1,7 @@
 // Background service worker. Holds the JWT and handles profile-value fetching.
 // Responds to messages from popup and content scripts.
 
-// The Wayfinder app origin the extension talks to. Defaults to production but
+// The Civitas app origin the extension talks to. Defaults to production but
 // can be overridden for local testing by setting chrome.storage.local.wf_origin
 // (e.g. "http://localhost:3000"). Must also appear in manifest host_permissions.
 const DEFAULT_ORIGIN = "https://wayfinder.app";
@@ -74,7 +74,7 @@ async function handleAgent(type: string, payload: unknown): Promise<unknown> {
     if (type === "agent-open") {
       const url = (payload as { url?: string })?.url;
       if (!url || !/^https?:\/\//.test(url)) return { ok: false, error: "Invalid portal URL." };
-      // Open the portal in a BACKGROUND tab so the user stays on Wayfinder while
+      // Open the portal in a BACKGROUND tab so the user stays on Civitas while
       // the agent fills it. We only switch them to it at the end (focusPortal).
       const tab = await chrome.tabs.create({ url, active: false });
       await setPortalTab(tab.id);
@@ -253,7 +253,7 @@ function fillFields(values: Record<string, string>): number {
       </style>
       <div class="banner">
         <button class="close" onclick="this.closest('#wf-review-banner').remove()">×</button>
-        <div class="title">Wayfinder filled ${filled} field${filled !== 1 ? "s" : ""}</div>
+        <div class="title">Civitas filled ${filled} field${filled !== 1 ? "s" : ""}</div>
         <p>Review every field before submitting. We never fill SSN, A-number, or bank details.</p>
         <div class="warning">⚠️ Do not submit until you have reviewed all fields.</div>
       </div>

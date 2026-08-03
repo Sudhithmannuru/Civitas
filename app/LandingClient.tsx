@@ -16,7 +16,7 @@ const RTL = new Set(["ar", "fa", "ps", "ur"]);
 /* ----------------------------------------------------------------
    Topographic ridgelines — deterministic SVG paths drawn across
    double width (2 × 1440) so a -1440px translate loops seamlessly.
-   Ported from the "Wayfinder Landing A — Horizon" design.
+   Ported from the "Civitas Landing A — Horizon" design.
 ----------------------------------------------------------------- */
 type Ridge = { d: string; fill: string; op: number; dur: number };
 
@@ -203,7 +203,7 @@ export default function LandingClient({ authed = false }: { authed?: boolean }) 
       >
         <a href="#top" className="flex items-center gap-[11px] focus-visible:outline-none">
           <Logo size={30} />
-          <span className="text-xl font-extrabold tracking-[-0.02em] text-ink">Wayfinder</span>
+          <span className="text-xl font-extrabold tracking-[-0.02em] text-ink">Civitas</span>
         </a>
         <div className="flex items-center gap-5 md:gap-[34px]">
           <a href="#how" className="hidden text-[15.5px] font-medium text-[#46544B] hover:text-ink md:inline">{t.nav.howItWorks}</a>
@@ -443,7 +443,7 @@ export default function LandingClient({ authed = false }: { authed?: boolean }) 
         <div className="mx-auto flex max-w-[1180px] flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-[11px]">
             <Logo size={26} />
-            <span className="text-[18px] font-extrabold text-[#FBF6EE]">Wayfinder</span>
+            <span className="text-[18px] font-extrabold text-[#FBF6EE]">Civitas</span>
           </div>
           <div className="flex flex-wrap gap-7 text-[14.5px]">
             <a href="#how" className="text-[#9FB0A4] hover:text-[#FBF6EE]">{t.nav.howItWorks}</a>

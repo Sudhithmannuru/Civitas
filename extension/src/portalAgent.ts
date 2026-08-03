@@ -284,7 +284,7 @@ function showBanner() {
     </style>
     <div class="b">
       <div>
-        <div class="t">Wayfinder is helping you</div>
+        <div class="t">Civitas is helping you</div>
         <div>It fills what it can and asks you about anything sensitive. Always review before you submit.</div>
       </div>
       <button class="x" id="wfx" aria-label="Hide">×</button>

@@ -1,14 +1,14 @@
-# Publishing the Wayfinder extension to the Chrome Web Store
+# Publishing the Civitas extension to the Chrome Web Store
 
 This gets judges a one-click **"Add to Chrome"** link (no developer-mode, no unzip).
 Only YOU can do the submission (it needs your Google account + a one-time $5 fee).
-The package is already built and store-ready: `wayfinder-extension.zip` (repo root).
+The package is already built and store-ready: `civitas-extension.zip` (repo root).
 
 ## Steps (~15 min of your time, then Google review)
 1. Go to the **Chrome Web Store Developer Dashboard**:
    https://chrome.google.com/webstore/devconsole
 2. Pay the **one-time $5** developer registration fee (first time only).
-3. Click **"Add new item"** → upload **`wayfinder-extension.zip`**.
+3. Click **"Add new item"** → upload **`civitas-extension.zip`**.
 4. Fill in the listing (copy below).
 5. Under **Visibility**, choose **"Unlisted"** — it won't show in search, but anyone
    with the link can install it. Perfect for judges.
@@ -16,7 +16,7 @@ The package is already built and store-ready: `wayfinder-extension.zip` (repo ro
 7. Share the resulting **"Add to Chrome"** link with judges.
 
 ## Before you submit — check the app domain
-The extension talks to the Wayfinder web app via two entries in `manifest.json`:
+The extension talks to the Civitas web app via two entries in `manifest.json`:
 - `host_permissions` and the first `content_scripts.matches`.
 
 They currently list `https://wayfinder.app/*` (and `http://localhost:3000/*` for dev).
@@ -24,14 +24,14 @@ They currently list `https://wayfinder.app/*` (and `http://localhost:3000/*` for
 to BOTH places, rebuild (`npm run build`), and re-zip, or pairing won't connect.
 
 ## Listing copy (paste into the dashboard)
-**Name:** Wayfinder Form Filler
+**Name:** Civitas Form Filler
 
 **Summary (132 char max):**
-Pre-fill U.S. government benefit forms from your Wayfinder profile. You always review and submit yourself.
+Pre-fill U.S. government benefit forms from your Civitas profile. You always review and submit yourself.
 
 **Description:**
-Wayfinder helps refugees and immigrants apply for U.S. benefits. This companion
-extension lets Wayfinder fill out official government benefit applications in your
+Civitas helps refugees and immigrants apply for U.S. benefits. This companion
+extension lets Civitas fill out official government benefit applications in your
 browser using the information you already saved — so you don't retype it on every
 form.
 

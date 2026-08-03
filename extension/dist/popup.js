@@ -24,8 +24,8 @@ async function init() {
 }
 function renderUnpaired() {
   html(`
-    <p class="status">Connect to your Wayfinder account to fill forms automatically.</p>
-    <button class="btn btn-primary" id="btn-pair">Connect Wayfinder Account</button>
+    <p class="status">Connect to your Civitas account to fill forms automatically.</p>
+    <button class="btn btn-primary" id="btn-pair">Connect Civitas Account</button>
   `);
   document.getElementById("btn-pair").addEventListener("click", startPairing);
 }
@@ -34,7 +34,7 @@ function renderPaired(pairedAt) {
   html(`
     <div class="success">Connected \u2713</div>
     <p class="paired-info">Paired on ${date}</p>
-    <p class="status" style="margin-top:8px">Open Wayfinder in your browser and use <strong>Fill out with AI</strong> on a benefit to fill forms.</p>
+    <p class="status" style="margin-top:8px">Open Civitas in your browser and use <strong>Fill out with AI</strong> on a benefit to fill forms.</p>
     <button class="btn btn-secondary" id="btn-disconnect" style="margin-top:12px">Disconnect</button>
   `);
   document.getElementById("btn-disconnect").addEventListener("click", disconnect);
@@ -61,7 +61,7 @@ async function detectOrigin() {
 async function startPairing() {
   const origin = await detectOrigin();
   html(`
-    <p class="status">In Wayfinder, open <strong>Settings \u2192 Auto-fill</strong> and click <strong>"Set up auto-fill"</strong> to get a code, then enter it here:</p>
+    <p class="status">In Civitas, open <strong>Settings \u2192 Auto-fill</strong> and click <strong>"Set up auto-fill"</strong> to get a code, then enter it here:</p>
     <div style="margin: 10px 0;">
       <input id="code-input" type="text" maxlength="8" placeholder="e.g. AB1C2D" style="width:100%;padding:10px;border:2px solid #e5e7eb;border-radius:8px;font-family:monospace;font-size:18px;letter-spacing:3px;text-align:center;text-transform:uppercase" />
     </div>
@@ -90,7 +90,7 @@ async function exchangeCode(code) {
   const res = await Promise.race([
     chrome.runtime.sendMessage({ type: "exchange-code", code }),
     new Promise(
-      (resolve) => setTimeout(() => resolve({ ok: false, error: "Timed out. Is the Wayfinder server running, and is this the code currently shown in the app?" }), 8e3)
+      (resolve) => setTimeout(() => resolve({ ok: false, error: "Timed out. Is the Civitas server running, and is this the code currently shown in the app?" }), 8e3)
     )
   ]);
   if (!res?.ok) {

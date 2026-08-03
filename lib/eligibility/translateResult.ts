@@ -2,11 +2,11 @@
 // language. The eligibility DECISION stays deterministic (engine.ts) — this only
 // translates the human-readable text (benefit names, "why", deadline labels,
 // required documents, next steps, and the summary) so the dashboard reads in the
-// user's language. Server-only (uses the Claude client).
+// user's language. Server-only (uses the OpenAI client).
 //
 // Field names match what the eligibility route stores in eligibility_results.benefits.
 
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { completeChat, GPT } from "@/lib/openai";
 import { SUPPORTED_LANGUAGES } from "@/lib/languages";
 
 interface StoredBenefit {
@@ -62,18 +62,16 @@ export async function translateEligibilityResult<T extends StoredResult>(
   };
 
   try {
-    const client = getClaudeClient();
-    const resp = await client.messages.create({
-      model: SONNET,
-      max_tokens: 8000,
+    const text = await completeChat({
+      model: GPT,
+      maxTokens: 8000,
       system: `You translate a U.S. benefits result into ${langName} (language code ${targetLang}) for a refugee/immigrant reader.
 - Translate ONLY the string values. Keep every JSON key, every "id", the nesting, and every array's length identical.
 - Keep program acronyms in parentheses exactly as-is, e.g. "(RCA)", "(SNAP)", "(TANF)".
 - Use warm, plain language for low-literacy readers. Never add, drop, or reorder items.
 Output ONLY the translated JSON object, no prose, no code fences.`,
-      messages: [{ role: "user", content: JSON.stringify(payload) }],
+      user: JSON.stringify(payload),
     });
-    const text = resp.content[0]?.type === "text" ? resp.content[0].text : "";
     const parsed = extractJson(text) as
       | { summary?: string; benefits?: Array<Record<string, unknown>> }
       | null;

@@ -1,13 +1,13 @@
 # Phase 2 — AI Portal Autofill (Chrome-extension agent)
 
 > Status: **PROPOSED / NOT BUILT.** Approved direction: Chrome-extension agent
-> architecture; up to **$0.30** of Anthropic API spend authorized for testing.
+> architecture; up to **$0.30** of OpenAI API spend authorized for testing.
 > Do not start the build until Phase 1 is verified.
 
 ## Why the extension (not the DevTools MCP)
 
 A deployed web app cannot drive an arbitrary third-party portal (cross-origin
-sandbox). The only production-viable way for Wayfinder to read/fill/click a live
+sandbox). The only production-viable way for Civitas to read/fill/click a live
 government portal in the user's own logged-in session is the **paired Chrome
 extension** (content scripts with host permissions). The bundled
 `chrome-devtools-protocol-1.0.3.dxt` (a local Python CDP MCP) is a **developer/test
@@ -23,17 +23,17 @@ shipped to end users.
   profile value delivery.
 - `lib/formFill.ts` — canonical field-name → profile-value mapping + sensitive
   detection (reuse this server-side and in the content script).
-- `app/api/form-assist/route.ts` — existing Claude (Haiku) chat endpoint; the
+- `app/api/form-assist/route.ts` — existing OpenAI chat endpoint; the
   reasoning loop will follow its auth/scrub/typed-error pattern.
 
 ## Target architecture (the "agent loop")
 
 ```
 Action Plan "Fill out with AI"
-   → opens portal tab + Wayfinder side panel (progress feed)
+   → opens portal tab + Civitas side panel (progress feed)
    → loop, one page at a time:
         extension: SNAPSHOT page (fields, labels, buttons, errors, step markers)
-           → POST /api/autofill/plan  (Claude reasons over snapshot + profile)
+           → POST /api/autofill/plan  (OpenAI reasons over snapshot + profile)
            ← PLAN: [{action: fill|select|click|ask_user|handoff_sensitive|review|done,
                      selector, value?, reason, confidence}]
         extension: execute non-sensitive, non-final actions; never click final submit
@@ -59,7 +59,7 @@ the next page the same flow.
 
 ## New pieces to build
 1. `app/api/autofill/plan/route.ts` — auth'd; takes a page snapshot + scrubbed
-   profile; returns a validated action list. (Claude Haiku first; this is the only
+   profile; returns a validated action list. (gpt-4o-mini first; this is the only
    token cost — keep snapshots small, cap steps for the $0.30 test budget.)
 2. Extension: snapshot serializer, action executor (fill/select/click/date/
    dropdown/checkbox), validation-error + step-change detection, sensitive +

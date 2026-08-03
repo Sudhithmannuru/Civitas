@@ -17,7 +17,7 @@
     },
     "hero": {
       "headline": "Um novo lar começa quando você sabe o caminho.",
-      "subheadline": "Wayfinder encontra os benefícios e papéis que você tem direito, explica tudo no seu idioma, e guia você passo a passo, antes dos prazos passarem.",
+      "subheadline": "Civitas encontra os benefícios e papéis que você tem direito, explica tudo no seu idioma, e guia você passo a passo, antes dos prazos passarem.",
       "cardLabel": "Comece no seu idioma",
       "searchPlaceholder": "Procure mais de 100 idiomas…",
       "cta": "Comece grátis"
@@ -32,7 +32,7 @@
         },
         {
           "title": "Encontramos o que serve",
-          "body": "Wayfinder verifica um banco de dados selecionado de regras de benefícios dos EUA e mostra exatamente o que você tem direito, com fontes, nunca adivinha."
+          "body": "Civitas verifica um banco de dados selecionado de regras de benefícios dos EUA e mostra exatamente o que você tem direito, com fontes, nunca adivinha."
         },
         {
           "title": "Aja a tempo",
@@ -50,7 +50,7 @@
         },
         {
           "title": "Assistente de Formulário de IA",
-          "body": "Wayfinder explica cada campo e escreve respostas no seu idioma. Nunca toca em números sensíveis, e nunca envia nada por você."
+          "body": "Civitas explica cada campo e escreve respostas no seu idioma. Nunca toca em números sensíveis, e nunca envia nada por você."
         },
         {
           "title": "Cofre de Documentos",
@@ -58,19 +58,19 @@
         },
         {
           "title": "Encontrar Ajuda",
-          "body": "Para qualquer assunto legal, Wayfinder conecta você a um advogado licenciado ou representante credenciado perto de você. Uma pessoa de verdade, não uma adivinhação."
+          "body": "Para qualquer assunto legal, Civitas conecta você a um advogado licenciado ou representante credenciado perto de você. Uma pessoa de verdade, não uma adivinhação."
         }
       ]
     },
     "languagesSection": {
       "eyebrow": "Qualquer idioma",
       "title": "Nas suas palavras, desde a primeira tela.",
-      "body": "Escolha seu idioma antes de se inscrever, e Wayfinder fala em todo lugar, a cada passo do caminho."
+      "body": "Escolha seu idioma antes de se inscrever, e Civitas fala em todo lugar, a cada passo do caminho."
     },
     "trust": {
       "badge": "Sua segurança vem em primeiro lugar",
       "title": "Nunca compartilhamos suas informações com órgãos de imigração.",
-      "body": "Seus documentos são criptografados e apenas seu. Wayfinder nunca preenche identificadores sensíveis, nunca envia formulários, e cada decisão legal é feita por uma pessoa de verdade, licenciada, não por uma máquina.",
+      "body": "Seus documentos são criptografados e apenas seu. Civitas nunca preenche identificadores sensíveis, nunca envia formulários, e cada decisão legal é feita por uma pessoa de verdade, licenciada, não por uma máquina.",
       "points": [
         "Criptografado e privado",
         "Fontes que você pode verificar",
@@ -407,7 +407,7 @@
       "openInFiller": "Abrir em preenchedor de formulário",
       "secureLine": "Seus documentos são processados com segurança e nunca compartilhados com órgãos de imigração.",
       "send": "Enviar",
-      "contextNote": "Wayfinder usa as informações que você já forneceu para responder para sua situação.",
+      "contextNote": "Civitas usa as informações que você já forneceu para responder para sua situação.",
       "suggestionsLabel": "Perguntas comuns"
     },
     "explainer": {
@@ -451,7 +451,7 @@
     "dismiss": "Descartar",
     "footer": {
       "privacy": "Suas informações são criptografadas e privadas. Nunca as compartilhamos com órgãos de imigração.",
-      "disclaimer": "Wayfinder não fornece aconselhamento legal."
+      "disclaimer": "Civitas não fornece aconselhamento legal."
     },
     "settings": {
       "title": "Configurações",

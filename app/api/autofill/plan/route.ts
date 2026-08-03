@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { completeChat, GPT } from "@/lib/openai";
 import { profileToValues, mergeDocumentFields, type ProfileValues } from "@/lib/formFill";
 import {
   PLANNER_SYSTEM,
@@ -93,22 +93,19 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const claude = getClaudeClient();
   let rawText = "";
   try {
-    const response = await claude.messages.create({
-      model: SONNET,
-      max_tokens: 1500,
+    rawText = await completeChat({
+      model: GPT,
+      maxTokens: 1500,
       system: PLANNER_SYSTEM,
-      messages: [{ role: "user", content: buildPlannerUserMessage(snapshot, values, askedKeys, answers) }],
+      user: buildPlannerUserMessage(snapshot, values, askedKeys, answers),
     });
-    const first = response.content[0];
-    rawText = first && first.type === "text" ? first.text : "";
   } catch (error) {
-    if (error instanceof Anthropic.RateLimitError) {
+    if (error instanceof OpenAI.RateLimitError) {
       return NextResponse.json({ error: "We're a little busy. Please wait a moment and try again." }, { status: 429 });
     }
-    if (error instanceof Anthropic.APIError) {
+    if (error instanceof OpenAI.APIError) {
       return NextResponse.json({ error: "The assistant is temporarily unavailable." }, { status: 502 });
     }
     return NextResponse.json({ error: "Something went wrong planning the next step." }, { status: 500 });

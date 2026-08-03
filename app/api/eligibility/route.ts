@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
-import { getClaudeClient, SONNET } from "@/lib/claude";
+import { getOpenAIClient, completeChat, GPT } from "@/lib/openai";
 import { readFileSync } from "fs";
 import { join } from "path";
 import type { BenefitRecord, BenefitVerification, EligibilityBenefit, Profile } from "@/lib/types";
@@ -74,7 +74,7 @@ function extractJson(text: string): unknown | null {
   return null;
 }
 
-// ── Claude narrative generation (text only; never decides eligibility) ───────
+// ── LLM narrative generation (text only; never decides eligibility) ───────────
 
 interface Narratives {
   summary: string;
@@ -85,9 +85,7 @@ interface Narratives {
 }
 
 async function generateNarratives(
-  client: ReturnType<typeof getClaudeClient>,
   benefits: EligibilityBenefit[],
-  profile: Profile,
   language: string,
   attorneyNeeded: boolean
 ): Promise<Narratives> {
@@ -102,7 +100,7 @@ async function generateNarratives(
       }`
     : "We could not confirm any programs yet. A caseworker can help review your situation.";
 
-  // Pre-seed perBenefit from the existing English template text so a Claude
+  // Pre-seed perBenefit from the existing English template text so an LLM
   // failure degrades gracefully (never to empty).
   const perBenefit: Record<string, { whyPlainLanguage: string; nextSteps: string[] }> = {};
   for (const b of relevant) {
@@ -128,22 +126,16 @@ async function generateNarratives(
     const count = relevant.length;
     const maxTokens = Math.min(16000, 4096 + 220 * count);
 
-    const response = await client.messages.create({
-      model: SONNET,
-      max_tokens: maxTokens,
+    const text = await completeChat({
+      model: GPT,
+      maxTokens,
       system: `Return ONLY a JSON object {summary, items:[{id, why, steps:[...]}]} in language ${language}. why<=2 sentences, steps<=4 short imperative items. Do not change any eligibility status. Do not invent programs.`,
-      messages: [
-        {
-          role: "user",
-          content: `Language: ${language}
+      user: `Language: ${language}
 Attorney needed overall: ${attorneyNeeded}
 Programs to describe (write a warm 2-3 sentence summary addressed to "you", then why+steps per program):
 ${JSON.stringify(compact)}`,
-        },
-      ],
     });
 
-    const text = response.content[0]?.type === "text" ? response.content[0].text : "";
     const parsed = extractJson(text) as
       | { summary?: string; items?: { id: string; why?: string; steps?: string[] }[] }
       | null;
@@ -174,7 +166,7 @@ ${JSON.stringify(compact)}`,
 
     return { summary, templateSummary, perBenefit };
   } catch {
-    // Claude outage / error -> English templates. Never empty.
+    // OpenAI outage / error -> English templates. Never empty.
     return { summary: templateSummary, templateSummary, perBenefit };
   }
 }
@@ -209,19 +201,12 @@ export async function POST() {
     (b) => b.needsAttorney && b.status !== "not_eligible"
   );
 
-  // ── Claude: narrative text ONLY (robust, fallback-safe) ──
-  const claude = getClaudeClient();
+  // ── LLM: narrative text ONLY (robust, fallback-safe) ──
   let summary = "";
   let templateSummary = "";
   let narratedBenefits = baseBenefits;
   try {
-    const narratives = await generateNarratives(
-      claude,
-      baseBenefits,
-      profile as Profile,
-      language,
-      attorneyNeeded
-    );
+    const narratives = await generateNarratives(baseBenefits, language, attorneyNeeded);
     summary = narratives.summary;
     templateSummary = narratives.templateSummary;
     narratedBenefits = baseBenefits.map((b) => {
@@ -243,7 +228,7 @@ export async function POST() {
   }
 
   // ── Independent verification pass ────────────────────────────────────────────
-  // A SEPARATE Claude call audits the generated why/steps/summary against the
+  // A SEPARATE OpenAI call audits the generated why/steps/summary against the
   // curated source records (database/benefits.json). It does NOT re-decide
   // eligibility — only faithfulness. Anything it can't verify is dropped (replaced
   // with the verified source template) or flagged before display; if the verifier
@@ -253,7 +238,7 @@ export async function POST() {
     const relevant = narratedBenefits.filter((b) => b.status !== "not_eligible");
     let verification: VerificationOutcome | null = null;
     try {
-      verification = await verifyNarratives(claude, relevant, benefits, summary);
+      verification = await verifyNarratives(getOpenAIClient(), relevant, benefits, summary);
     } catch {
       verification = null;
     }
