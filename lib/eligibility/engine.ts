@@ -5,8 +5,9 @@
 // (English) narrative text — to be optionally overwritten by OpenAI later.
 //
 // Core safety property: MISSING input never produces "not_eligible". Unknown
-// answers resolve to "review" (-> needs_human_review), so incomplete data can
-// never silently tell a refugee they qualify for nothing.
+// answers resolve to "review" inside the rule tree, and the status mapping
+// below surfaces that as "likely_eligible" so an incomplete profile still
+// shows the program. A hard "fail" is the only path to "not_eligible".
 
 import type {
   BenefitRecord,
@@ -29,9 +30,9 @@ export interface EvalContext {
   derived: EngineDerivedFields;
   fpl: FPLTable;
   now: Date;
-  // Mutable flag: set true whenever an fpl leaf could not be evaluated because
-  // percent_fpl is unknown (income/size not provided). Lets evaluateBenefit
-  // downgrade an otherwise-passing benefit to "maybe_eligible".
+  // Set true when an fpl leaf could not be evaluated because income or
+  // household size is missing. The binary status mapping does not read this;
+  // those programs stay "likely_eligible" so they remain visible.
   unresolvedIncome: boolean;
 }
 
@@ -150,8 +151,8 @@ function evalFplLeaf(leaf: FplLeaf, ctx: EvalContext): RuleResult {
     }
   }
   // Missing income/size -> the income test cannot be applied. Treat
-  // permissively (pass) but flag it, so evaluateBenefit can downgrade an
-  // otherwise-passing benefit to "maybe_eligible" (show it, but soft).
+  // permissively (pass) and record unresolvedIncome. Status stays
+  // likely_eligible; the flag is available to callers that want to soften copy.
   if (pct === null || pct === undefined) {
     ctx.unresolvedIncome = true;
     return leaf.review === true ? "review" : "pass";

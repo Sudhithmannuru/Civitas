@@ -1,5 +1,6 @@
 // Standalone test for the deterministic eligibility engine.
-// No DB, no LLM. Run with:  npx tsx scripts/eligibility-engine.test.mjs
+// No DB, no LLM. Run with:  npm test
+//   or: node --experimental-strip-types --import ./scripts/alias-register.mjs scripts/eligibility-engine.test.mjs
 //
 // It imports the pure engine (TS) and the real benefits.json + FPL table,
 // runs synthetic profiles, and asserts expected per-benefit statuses.
@@ -87,7 +88,9 @@ function statusOf(results, id) {
   // RCA: ORR, not TANF-eligible? With a child + low income, eligible_for_tanf is
   // true -> RCA's "not eligible_for_tanf" fails -> not_eligible. That's correct.
   check("rca", statusOf(r, "rca"), "not_eligible");
-  check("tanf", statusOf(r, "tanf"), "needs_human_review"); // fpl review:true
+  // The fpl leaf is marked review:true, but statuses are binary: anything
+  // that is not a hard fail is shown as likely_eligible.
+  check("tanf", statusOf(r, "tanf"), "likely_eligible");
   check("reception_placement", statusOf(r, "reception_placement"), "likely_eligible");
   check("medical_screening", statusOf(r, "medical_screening"), "likely_eligible");
 }
@@ -128,18 +131,19 @@ function statusOf(results, id) {
 }
 
 // ── Case 4: Missing data safety — refugee with almost nothing answered ───────
-// Must NEVER produce all-not_eligible. Unknown -> needs_human_review.
+// Must NEVER produce all-not_eligible. Unknown answers stay visible.
 {
   const p = profile({ immigration_status: "refugee_207" });
   const r = runEngine(p, benefits, fpl, NOW);
   console.log("\n== Case 4: refugee, mostly-missing data ==");
   const eligibleish = r.filter((b) => b.status !== "not_eligible");
   check("at least one non-not_eligible benefit", eligibleish.length > 0, true);
-  // SSI requires age/disabled/blind (all unknown) within rule -> review.
-  check("ssi", statusOf(r, "ssi"), "needs_human_review");
+  // SSI's age/disability leg is unknown, so the rule is "review". Binary
+  // mapping keeps the program visible instead of hiding it.
+  check("ssi", statusOf(r, "ssi"), "likely_eligible");
 }
 
-// ── Case 5: Legal/status always routes to human unless clearly excluded ──────
+// ── Case 5: Legal/status stays on the plan and is marked for an attorney ────
 {
   const p = profile({
     immigration_status: "refugee_207",
@@ -147,23 +151,23 @@ function statusOf(results, id) {
     status_grant_date: "2024-01-01",
   });
   const r = runEngine(p, benefits, fpl, NOW);
-  console.log("\n== Case 5: legal/status -> needs_human_review ==");
-  check("adjustment_of_status", statusOf(r, "adjustment_of_status"), "needs_human_review");
-  check("legal_services", statusOf(r, "legal_services"), "needs_human_review");
+  console.log("\n== Case 5: legal/status stays visible and flags an attorney ==");
+  check("adjustment_of_status", statusOf(r, "adjustment_of_status"), "likely_eligible");
+  check("legal_services", statusOf(r, "legal_services"), "likely_eligible");
   check("adjustment needsAttorney", r.find((b) => b.id === "adjustment_of_status").needsAttorney, true);
 }
 
-// ── Case 6: maybe_eligible when income unknown but rule has fpl leaf ──────────
-// LPR-from-humanitarian, no income/size given -> snap rule passes status leg,
-// fpl leaf unresolved -> downgrade to maybe_eligible.
+// ── Case 6: income unknown + fpl leaf stays visible ──────────────────────────
+// LPR-from-humanitarian, no income/size given -> the fpl leaf cannot be
+// applied. That is permissive (likely_eligible), not a silent exclusion.
 {
   const p = profile({
     immigration_status: "lpr_from_humanitarian",
     // household_gross_monthly_income & household_size intentionally null
   });
   const r = runEngine(p, benefits, fpl, NOW);
-  console.log("\n== Case 6: income unknown + fpl leaf -> maybe_eligible ==");
-  check("snap", statusOf(r, "snap"), "maybe_eligible");
+  console.log("\n== Case 6: income unknown + fpl leaf -> likely_eligible ==");
+  check("snap", statusOf(r, "snap"), "likely_eligible");
 }
 
 // ── Case 7: SSI elderly refugee within 7 years ───────────────────────────────

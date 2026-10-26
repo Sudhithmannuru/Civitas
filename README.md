@@ -106,9 +106,8 @@ npm run dev        # start the dev server at http://localhost:3000
 npm run build      # production build
 npm run start      # serve the production build
 npm run lint       # ESLint (flat config, eslint-config-next)
+npm test           # deterministic eligibility checks (no database, no API key)
 ```
-
-> There is no test runner configured. Verify changes with `npm run build` + `npm run lint` and by exercising the flows in the running app.
 
 ### The "Fill out with AI" browser extension
 
