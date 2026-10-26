@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run start` — serve the production build
 - `npm run lint` — ESLint (flat config in `eslint.config.mjs`, `eslint-config-next`)
 
-`npm test` runs the deterministic eligibility checks in `scripts/eligibility-engine.test.mjs` (no database, no API key). Also verify with `npm run build`, `npm run lint`, and by exercising flows in the running app.
+`npm test` runs the deterministic checks in `scripts/` (eligibility, calendar dates, document-date parsing, autofill safety). No database or API key. Also verify with `npm run build`, `npm run lint`, and by exercising flows in the running app.
 
 ## Environment
 

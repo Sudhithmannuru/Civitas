@@ -102,6 +102,14 @@ function scrubField(f: SnapshotField): SnapshotField {
   };
 }
 
+// A phone is a long digit run, which scrub() redacts before text is sent to
+// the model. That redaction must not apply to a value we type into a phone field.
+function isPhoneValue(field: SnapshotField, value: string): boolean {
+  const label = `${field.label} ${field.name ?? ""} ${field.type}`;
+  if (!/phone|telephone|\btel\b|mobile|cell/i.test(label)) return false;
+  return /^\+?[\d\s().-]{7,20}$/.test(value);
+}
+
 export function scrubSnapshot(s: PageSnapshot): PageSnapshot {
   return {
     url: (s.url ?? "").slice(0, 300),
@@ -225,11 +233,15 @@ export function validatePlan(rawText: string, snapshot: PageSnapshot): Plan {
       const ref = str(a.ref);
       const field = fieldByRef.get(ref);
       if (!field) continue; // ref must exist
-      const value = scrub(str(a.value));
+      const value = str(a.value).trim();
       if (!value) continue; // never fill an empty/invented value
       const label = scrub(str(a.label) || field.label).slice(0, 120);
       // Sensitive field → force a user handoff regardless of what the model said.
-      if (isSensitiveName(`${field.label} ${field.name ?? ""} ${field.type}`)) {
+      // Also refuse a secret-shaped value. scrub() would otherwise turn it into
+      // the literal "[REDACTED]" and that placeholder would be typed into the form.
+      // Phone numbers are long digit runs too, and those we are supposed to type.
+      const secretShaped = scrub(value) !== value && !isPhoneValue(field, value);
+      if (isSensitiveName(`${field.label} ${field.name ?? ""} ${field.type}`) || secretShaped) {
         out.push({ action: "handoff_sensitive", ref, label, reason: reason || "sensitive field — you should enter this yourself" });
         continue;
       }
