@@ -1,7 +1,7 @@
 // Calendar-date helper checks. No DB, no LLM.
 // A date-only string must stay on that calendar day in every time zone.
 
-import { addCalendarMonths, calendarDaysUntil, parseISODate } from "../lib/dates.ts";
+import { addCalendarMonths, ageInYears, calendarDaysUntil, parseISODate } from "../lib/dates.ts";
 
 let failures = 0;
 function check(label, actual, expected) {
@@ -36,6 +36,13 @@ check(
   calendarDaysUntil("2026-09-01", eveningBefore, "America/New_York"),
   -29,
 );
+
+// Birthday is Oct 27. At 02:00 UTC on Oct 27 it is still Oct 26 in New York,
+// so the person has not had a birthday yet. UTC has.
+const birthdayInstant = new Date("2026-10-27T02:00:00.000Z");
+check("age before local birthday", ageInYears("1990-10-27", birthdayInstant, "America/New_York"), 35);
+check("age on UTC birthday", ageInYears("1990-10-27", birthdayInstant, "UTC"), 36);
+check("reject impossible age", ageInYears("1800-01-01", birthdayInstant, "UTC"), null);
 
 console.log(`\n${failures === 0 ? "ALL TESTS PASSED" : `${failures} TEST(S) FAILED`}`);
 process.exit(failures === 0 ? 0 : 1);

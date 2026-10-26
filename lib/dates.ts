@@ -46,6 +46,31 @@ export function calendarDaysBetween(from: CalendarDate, to: CalendarDate): numbe
   return Math.round((end - start) / 86_400_000);
 }
 
+/** Whole years from a date of birth to `now`'s calendar day. Null if the date is invalid or the age is outside 0–120. */
+export function ageInYears(
+  dobISO: string,
+  now: Date = new Date(),
+  timeZone?: string,
+): number | null {
+  const dob = parseISODate(dobISO);
+  if (!dob) return null;
+  const today = calendarDateOf(now, timeZone);
+  let age = today.year - dob.year;
+  if (today.month < dob.month || (today.month === dob.month && today.day < dob.day)) age--;
+  return age >= 0 && age <= 120 ? age : null;
+}
+
+/** True when `iso` is a real calendar day on or before `now` in the chosen zone. */
+export function isISODateOnOrBefore(
+  iso: string,
+  now: Date = new Date(),
+  timeZone?: string,
+): boolean {
+  const parsed = parseISODate(iso);
+  if (!parsed) return false;
+  return calendarDaysBetween(parsed, calendarDateOf(now, timeZone)) >= 0;
+}
+
 /** Days from `now`'s calendar date until `iso`. Today is 0. Past dates are negative. */
 export function calendarDaysUntil(
   iso: string,

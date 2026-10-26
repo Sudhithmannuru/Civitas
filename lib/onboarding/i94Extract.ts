@@ -15,6 +15,7 @@
 //     client then leaves low-confidence fields blank for manual entry.
 
 import type { ImmigrationStatus } from "@/lib/types";
+import { ageInYears, isISODateOnOrBefore, parseISODate } from "@/lib/dates";
 
 export type Confidence = "high" | "medium" | "low";
 const CONFIDENCES = new Set<Confidence>(["high", "medium", "low"]);
@@ -50,25 +51,12 @@ export interface ExtractionResult {
   notes: string[];
 }
 
-const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
-function cleanDate(v: unknown): string | null {
-  if (typeof v !== "string" || !ISO_DATE.test(v)) return null;
-  const d = new Date(v);
-  if (isNaN(d.getTime())) return null;
-  // Reject future dates and absurdly old ones.
-  if (d.getTime() > Date.now()) return null;
-  if (d.getFullYear() < 1900) return null;
+function cleanDate(v: unknown, now: Date): string | null {
+  if (typeof v !== "string" || !parseISODate(v)) return null;
+  if (Number(v.slice(0, 4)) < 1900) return null;
+  // Compare calendar days. `new Date("1900-01-01")` is still 1899 in US time zones.
+  if (!isISODateOnOrBefore(v, now)) return null;
   return v;
-}
-
-function ageFromDob(dob: string): number | null {
-  const d = new Date(dob);
-  if (isNaN(d.getTime())) return null;
-  const now = new Date();
-  let age = now.getFullYear() - d.getFullYear();
-  const m = now.getMonth() - d.getMonth();
-  if (m < 0 || (m === 0 && now.getDate() < d.getDate())) age--;
-  return age >= 0 && age <= 120 ? age : null;
 }
 
 function conf(v: unknown): Confidence {
@@ -150,7 +138,7 @@ function safeJsonObject(rawText: string): Record<string, unknown> {
 
 // Parse + validate + derive. Pure: same input → same output (except `age`, which
 // is relative to today). This is the single source of truth for field mapping.
-export function parseExtraction(rawText: string): ExtractionResult {
+export function parseExtraction(rawText: string, now: Date = new Date()): ExtractionResult {
   const parsed = safeJsonObject(rawText);
 
   const documents_detected = (Array.isArray(parsed.documents_detected) ? parsed.documents_detected : [])
@@ -169,7 +157,7 @@ export function parseExtraction(rawText: string): ExtractionResult {
 
   // Dates — validate ISO + not in the future. Each lands ONLY in its own slot.
   for (const key of ["date_of_birth", "arrival_date", "eligibility_date", "status_grant_date"] as const) {
-    const v = cleanDate(getStr(key));
+    const v = cleanDate(getStr(key), now);
     if (v) out[key] = { value: v, confidence: conf(raw[key]?.confidence) };
   }
 
@@ -193,7 +181,7 @@ export function parseExtraction(rawText: string): ExtractionResult {
   // Server-side derivations (deterministic).
   // 1) age from date_of_birth (only when we still trust the birth date).
   if (out.date_of_birth && out.date_of_birth.confidence !== "low") {
-    const age = ageFromDob(out.date_of_birth.value);
+    const age = ageInYears(out.date_of_birth.value, now);
     if (age !== null) out.age = { value: age, confidence: out.date_of_birth.confidence };
   }
   // 2) eligibility_date fallback: refugee -> arrival date; asylee -> grant date.
