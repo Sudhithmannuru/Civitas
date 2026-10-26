@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { EligibilityBenefit, Profile, Document } from "@/lib/types";
+import { calendarDaysUntil } from "@/lib/dates";
 import { useTranslation } from "@/components/i18n/TranslationProvider";
 import { createClient } from "@/lib/supabase/client";
 import { putFormFile, type StoredFormFile } from "@/lib/formFileStore";
@@ -143,10 +144,9 @@ function deadlineBadge(
 ): { text: string; tone: string } | null {
   if (!deadline.deadlineDate && !deadline.label) return null;
   if (deadline.deadlineDate) {
-    const target = new Date(deadline.deadlineDate);
-    if (!Number.isNaN(target.getTime())) {
-      const days = Math.ceil((target.getTime() - Date.now()) / 86_400_000);
-      if (days <= 0) {
+    const days = calendarDaysUntil(deadline.deadlineDate);
+    if (days !== null) {
+      if (days < 0) {
         return { text: "Window may have passed", tone: "bg-sand-100 text-sand-600" };
       }
       const tone =

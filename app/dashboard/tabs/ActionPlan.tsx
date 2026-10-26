@@ -6,6 +6,7 @@ import type { EligibilityBenefit } from "@/lib/types";
 import { useTranslation } from "@/components/i18n/TranslationProvider";
 import AutofillAgent from "@/components/AutofillAgent";
 import { applyUrlFor } from "@/lib/autofill/statePortals";
+import { calendarDaysUntil } from "@/lib/dates";
 
 // Presentation-only form info, threaded from benefits.json by the shell task.
 type FormInfo = {
@@ -48,10 +49,9 @@ function deadlineInfo(
   t: ReturnType<typeof useTranslation>["t"],
 ): { text: string; urgent: boolean; critical: boolean; passed: boolean } | null {
   if (deadline.deadlineDate) {
-    const target = new Date(deadline.deadlineDate);
-    if (!Number.isNaN(target.getTime())) {
-      const days = Math.ceil((target.getTime() - Date.now()) / 86_400_000);
-      if (days <= 0) {
+    const days = calendarDaysUntil(deadline.deadlineDate);
+    if (days !== null) {
+      if (days < 0) {
         return {
           text: t.dashboard.actionPlan.deadlinePassedClear,
           urgent: false,

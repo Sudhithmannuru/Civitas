@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --import ./scripts/alias-register.mjs scripts/eligibility-engine.test.mjs"
+    "test": "node --experimental-strip-types --import ./scripts/alias-register.mjs scripts/eligibility-engine.test.mjs && node --experimental-strip-types --import ./scripts/alias-register.mjs scripts/dates.test.mjs"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.5.1",

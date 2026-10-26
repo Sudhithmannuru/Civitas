@@ -92,6 +92,14 @@ function statusOf(results, id) {
   // that is not a hard fail is shown as likely_eligible.
   check("tanf", statusOf(r, "tanf"), "likely_eligible");
   check("reception_placement", statusOf(r, "reception_placement"), "likely_eligible");
+  // Arrival 2026-05-01 plus the 3-month reception window is August 1,
+  // not a timezone-shifted July 31 / August 2.
+  const reception = r.find((b) => b.id === "reception_placement");
+  check(
+    "reception deadline date",
+    reception.deadline.deadlineDate,
+    "2026-08-01",
+  );
   check("medical_screening", statusOf(r, "medical_screening"), "likely_eligible");
 }
 

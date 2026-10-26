@@ -16,6 +16,7 @@ import type {
   Profile,
   Rule,
 } from "@/lib/types";
+import { addCalendarMonths, calendarDaysUntil, parseISODate } from "@/lib/dates";
 import {
   computeDerived,
   percentFPL,
@@ -210,20 +211,10 @@ export function evaluateBenefit(benefit: BenefitRecord, ctx: EvalContext): Benef
 
 // ── Deadline computation ─────────────────────────────────────────────────────
 
-export function addMonths(date: Date, n: number): Date {
-  const d = new Date(date.getTime());
-  d.setMonth(d.getMonth() + n);
-  return d;
-}
-
 interface DeadlineShape {
   label: string;
   daysLeft: number | null;
   deadlineDate: string | null;
-}
-
-function dayDiff(target: Date, now: Date): number {
-  return Math.ceil((target.getTime() - now.getTime()) / 86400000);
 }
 
 // Build a deadline from a base date + window in months. Honors the
@@ -234,21 +225,20 @@ function windowDeadline(
   label: string,
   now: Date
 ): DeadlineShape {
-  if (!baseStr) return { label, daysLeft: null, deadlineDate: null };
-  const base = new Date(baseStr);
-  if (isNaN(base.getTime())) return { label, daysLeft: null, deadlineDate: null };
-  const deadlineDate = addMonths(base, windowMonths);
-  const daysLeft = dayDiff(deadlineDate, now);
-  if (daysLeft < 0) {
-    return { label: "Window may have passed", daysLeft: null, deadlineDate: deadlineDate.toISOString().split("T")[0] };
+  if (!baseStr || !parseISODate(baseStr)) return { label, daysLeft: null, deadlineDate: null };
+  const deadlineDate = addCalendarMonths(baseStr, windowMonths);
+  if (!deadlineDate) return { label, daysLeft: null, deadlineDate: null };
+  const daysLeft = calendarDaysUntil(deadlineDate, now);
+  if (daysLeft === null || daysLeft < 0) {
+    return { label: "Window may have passed", daysLeft: null, deadlineDate };
   }
-  return { label, daysLeft, deadlineDate: deadlineDate.toISOString().split("T")[0] };
+  return { label, daysLeft, deadlineDate };
 }
 
 function hardDateDeadline(dateStr: string, label: string, now: Date): DeadlineShape {
-  const d = new Date(dateStr);
-  const daysLeft = dayDiff(d, now);
-  if (daysLeft < 0) {
+  if (!parseISODate(dateStr)) return { label, daysLeft: null, deadlineDate: null };
+  const daysLeft = calendarDaysUntil(dateStr, now);
+  if (daysLeft === null || daysLeft < 0) {
     return { label: "Window may have passed", daysLeft: null, deadlineDate: dateStr };
   }
   return { label, daysLeft, deadlineDate: dateStr };
